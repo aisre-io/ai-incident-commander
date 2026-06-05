@@ -1,0 +1,46 @@
+# Gitee Go CI
+# Mirror of .github/workflows/ci.yml
+# Docs: https://gitee.com/help/articles/4193
+
+name: CI
+trigger:
+  push:
+    - main
+  pull_request:
+    - main
+
+stages:
+  - name: test
+    displayName: "Run tests (61/61 expected)"
+    strategy: build
+    steps:
+      - step: setup-python@v1
+        name: Install Python 3.12
+        python_version: '3.12'
+      - step: run@latest
+        name: Install dependencies
+        command: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-asyncio httpx
+      - step: run@latest
+        name: Run pytest
+        command: |
+          pytest tests/ -v --tb=short --junitxml=out/pytest-junit.xml
+  - name: lint-security
+    displayName: "Secret leak scan"
+    strategy: build
+    steps:
+      - step: run@latest
+        name: Check for hardcoded secrets in source
+        command: |
+          set +e
+          grep -rE "(sk-[a-zA-Z0-9]{20,}|xoxb-[0-9]+|https://open\.feishu\.cn/open-apis/bot/v2/hook/)" \
+            --include="*.py" --include="*.ps1" --include="*.md" --include="*.yaml" --include="*.yml" \
+            --exclude-dir=".git" --exclude-dir="out" --exclude-dir="tests" --exclude-dir="simulation" .
+          EXIT=$?
+          if [ $EXIT -eq 0 ]; then
+            echo "FAIL: hardcoded secret pattern found"
+            exit 1
+          fi
+          echo "OK: no hardcoded secrets detected"

@@ -2,11 +2,11 @@
 
 > Self-hosted AI SRE that compresses 60+ alerts into a single incident with root cause + fix in ~12 seconds.
 
-[![CI](https://github.com/ai-sre/ai-incident-commander/actions/workflows/ci.yml/badge.svg)](https://github.com/ai-sre/ai-incident-commander/actions)
+[![Gitee stars](https://gitee.com/ai-sre/ai-incident-commander/badge/star.svg?theme=white)](https://gitee.com/ai-sre/ai-incident-commander)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue)](https://www.python.org)
 [![Tests](https://img.shields.io/badge/tests-61%2F61-brightgreen)](tests/)
-[![GitHub stars](https://img.shields.io/github/stars/ai-sre/ai-incident-commander)](https://github.com/ai-sre/ai-incident-commander/stargazers)
+[![Hosted on Gitee](https://img.shields.io/badge/hosted%20on-Gitee-C71D23?logo=gitee&logoColor=white)](https://gitee.com/ai-sre/ai-incident-commander)
 
 ## Why
 
@@ -22,12 +22,14 @@ On-call engineers drown in alert noise. 60+ alerts per incident, ~30 min MTTR, m
 ## Quick Start
 
 ```bash
-git clone https://github.com/ai-sre/ai-incident-commander
+git clone https://gitee.com/ai-sre/ai-incident-commander
 cd ai-incident-commander
 pip install -r requirements.txt
 cp .env.example .env       # fill DEEPSEEK_API_KEY and LARK_WEBHOOK_URL
 python run.py
 ```
+
+> **Note**: This repo is currently hosted on **Gitee** (mainland China network conditions). A GitHub mirror will follow once access stabilizes. All issues / PRs are welcome on Gitee.
 
 Send a test incident:
 
