@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: pytest (Python 3.12)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-asyncio
+
+      - name: Run tests
+        env:
+          DEEPSEEK_API_KEY: ci-placeholder
+          NOTIFIER_TYPE: console
+          LARK_REGION: cn
+        run: |
+          pytest tests/ -v --tb=short --color=yes
+
+  lint-security:
+    name: Secret scan + import check
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Scan for hardcoded secrets in app/
+        run: |
+          if grep -RInE "(sk-[a-zA-Z0-9]{20,}|xox[baprs]-[a-zA-Z0-9-]{10,})" app/; then
+            echo "::error::Hardcoded secret detected in app/ — see matches above"
+            exit 1
+          fi
+          echo "No hardcoded secrets found."
+
+      - name: Verify no stray hardcoded webhook tokens
+        run: |
+          if grep -RInE "https://open\.feishu\.cn/open-apis/bot/v2/hook/[a-f0-9-]{30,}" app/ tests/; then
+            echo "::error::Hardcoded Lark webhook URL detected — move to env"
+            exit 1
+          fi
+          echo "No hardcoded webhook URLs in code."

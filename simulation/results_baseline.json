@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "total": 10,
+    "overall_accuracy": 0.94,
+    "use_judge": true
+  },
+  "results": [
+    {
+      "id": "sim-cpu_spike-000",
+      "fault_type": "cpu_spike",
+      "service": "search-service",
+      "model_output": "The root cause is the new data processing pipeline (feat commit, dev2, 12 files). This feature introduced a CPU-intensive workload that saturated the service, causing request processing times to spike and the thread pool to exhaust, triggering the CPU alerts and connection resets. The rate limiting fix (dev1) likely had no mitigating effect because the overload was internal processing, not external request volume.",
+      "ground_truth": "Inefficient data processing pipeline in search-service causing CPU saturation. New pipeline feature added excessive computation per request without rate limiting.",
+      "score": 1.0,
+      "latency": 10.05
+    },
+    {
+      "id": "sim-cpu_spike-001",
+      "fault_type": "cpu_spike",
+      "service": "search-service",
+      "model_output": "The new data processing pipeline (commit `feat: add new data processing pipeline` by dev2) introduced CPU-intensive operations, causing request processing time to spike above 30s. This saturated the thread pool, leading to rejected requests and connection resets. The rate-limiting fix was likely a reaction to an already-overloaded service and not the root cause.",
+      "ground_truth": "Inefficient data processing pipeline in search-service causing CPU saturation. New pipeline feature added excessive computation per request without rate limiting.",
+      "score": 1.0,
+      "latency": 19.97
+    },
+    {
+      "id": "sim-cpu_spike-002",
+      "fault_type": "cpu_spike",
+      "service": "notification-service",
+      "model_output": "The new data processing pipeline commit (feat: add new data processing pipeline, 12 files) introduced a performance regression that caused request processing to exceed 30 seconds. This slow processing quickly saturated the thread pool, leading to rejected requests and connection resets, which manifested as sustained high CPU usage above 95%. The rate limiting fix was likely an attempted mitigation but did not address the underlying processing delay caused by the new pipeline.",
+      "ground_truth": "Inefficient data processing pipeline in notification-service causing CPU saturation. New pipeline feature added excessive computation per request without rate limiting.",
+      "score": 1.0,
+      "latency": 16.47
+    },
+    {
+      "id": "sim-cpu_spike-003",
+      "fault_type": "cpu_spike",
+      "service": "payment-service",
+      "model_output": "The root cause is the introduction of a new data processing pipeline in the `feat: add new data processing pipeline` commit (dev2, 12 files), which consumed excessive CPU resources and caused request processing times to exceed 30 seconds. This led to thread pool exhaustion, rejected requests, and the sustained high CPU utilization that triggered both critical and warning alerts.",
+      "ground_truth": "Inefficient data processing pipeline in payment-service causing CPU saturation. New pipeline feature added excessive computation per request without rate limiting.",
+      "score": 0.7,
+      "latency": 13.01
+    },
+    {
+      "id": "sim-cpu_spike-004",
+      "fault_type": "cpu_spike",
+      "service": "api-gateway",
+      "model_output": "The root cause is the new data processing pipeline introduced in commit `feat: add new data processing pipeline` (dev2, 12 files).  \nThis change likely added heavy synchronous processing in the API gateway itself (e.g., large payloads or complex transformations), causing request handling times to exceed 30 seconds, which saturated the CPU and exhausted the thread pool.  \nThe resulting thread starvation led to request rejections and connection resets, triggering the high-CPU and threshold breach alerts.",
+      "ground_truth": "Inefficient data processing pipeline in api-gateway causing CPU saturation. New pipeline feature added excessive computation per request without rate limiting.",
+      "score": 0.7,
+      "latency": 13.29
+    },
+    {
+      "id": "sim-cpu_spike-005",
+      "fault_type": "cpu_spike",
+      "service": "search-service",
+      "model_output": "The root cause is the introduction of the new data processing pipeline (feat: add new data processing pipeline, 12 files) which degraded per-request performance inside search-service, causing request processing times to exceed 30 seconds. This slow processing saturated the thread pool and drove CPU utilization above 95%, triggering the alerts. The rate-limiting fix was likely unrelated and may have been an attempt to mitigate a pre-existing load issue that the new pipeline exacerbated.",
+      "ground_truth": "Inefficient data processing pipeline in search-service causing CPU saturation. New pipeline feature added excessive computation per request without rate limiting.",
+      "score": 1.0,
+      "latency": 18.13
+    },
+    {
+      "id": "sim-memory_leak-000",
+      "fault_type": "memory_leak",
+      "service": "notification-service",
+      "model_output": "The `feat: add in-memory result cache` commit introduced an unbounded in-memory cache that steadily consumed heap space under load, as indicated by the monotonically growing heap usage alert. Without proper sizing or eviction, the cache filled the heap, triggering garbage collection thrashing and ultimately the `OutOfMemoryError: Java heap space`.",
+      "ground_truth": "Memory leak in notification-service caused by unbounded in-memory result cache. Cache entries are never evicted, causing heap to grow until OOM.",
+      "score": 1.0,
+      "latency": 12.49
+    },
+    {
+      "id": "sim-memory_leak-001",
+      "fault_type": "memory_leak",
+      "service": "payment-service",
+      "model_output": "The root cause is the commit `feat: add in-memory result cache` (dev1), which introduced an unbounded in-memory cache. This cache caused monotonically growing heap memory usage as stored results accumulated without eviction, eventually exhausting the Java heap and triggering the `OutOfMemoryError` and GC overhead limit alerts.",
+      "ground_truth": "Memory leak in payment-service caused by unbounded in-memory result cache. Cache entries are never evicted, causing heap to grow until OOM.",
+      "score": 1.0,
+      "latency": 13.85
+    },
+    {
+      "id": "sim-memory_leak-002",
+      "fault_type": "memory_leak",
+      "service": "search-service",
+      "model_output": "The root cause is the commit `feat: add in-memory result cache` by dev1, which introduced an unbounded cache storing results in heap memory. This caused monotonically growing heap usage until the Java heap space exhausted, triggering the OutOfMemoryError and GC overhead limit. The memory pressure eventually led to the inability to create new native threads, consistent with the observed cascade of failures.",
+      "ground_truth": "Memory leak in search-service caused by unbounded in-memory result cache. Cache entries are never evicted, causing heap to grow until OOM.",
+      "score": 1.0,
+      "latency": 7.45
+    },
+    {
+      "id": "sim-memory_leak-003",
+      "fault_type": "memory_leak",
+      "service": "search-service",
+      "model_output": "The in-memory result cache introduced in commit `feat: add in-memory result cache` caused unbounded growth of cached objects, leading to monotonically increasing heap usage, GC overhead, and eventually an OutOfMemoryError. This directly triggered the critical memory alerts and service failure.",
+      "ground_truth": "Memory leak in search-service caused by unbounded in-memory result cache. Cache entries are never evicted, causing heap to grow until OOM.",
+      "score": 1.0,
+      "latency": 9.59
+    }
+  ]
+}

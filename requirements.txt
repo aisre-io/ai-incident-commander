@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+httpx
+langgraph
+openai
+slack-bolt
+slack-sdk
+python-dotenv
+loguru
+pyyaml

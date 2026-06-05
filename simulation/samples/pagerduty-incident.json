@@ -1,0 +1,29 @@
+{
+  "event": {
+    "id": "incident-mock-001",
+    "incident_key": "P0-E2E-VALIDATION-2026-06-05",
+    "title": "[P0 验证] AI Incident Commander E2E Test",
+    "description": "Lark 端到端验证 — 这是 P0 阶段的烟雾测试 incident。\n\n触发了 3 个 CPU 告警 + 1 个 memory warning，目的是确认 Lark 卡片渲染、严重度着色（critical=红/warning=黄）、路由链路。",
+    "service": {
+      "name": "search-service",
+      "html_url": "https://example.pagerduty.com/services/PSERVICE1"
+    },
+    "urgency": "high",
+    "status": "triggered",
+    "created_at": "2026-06-05T10:00:00Z",
+    "alerts": [
+      {
+        "id": "alert-cpu-1",
+        "title": "High CPU on search-service",
+        "description": "CPU > 95% for 10 minutes on search-service",
+        "severity": "critical"
+      },
+      {
+        "id": "alert-cpu-2",
+        "title": "CPU threshold breach on search-service",
+        "description": "CPU utilization sustained above 90%",
+        "severity": "warning"
+      }
+    ]
+  }
+}

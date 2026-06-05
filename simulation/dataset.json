@@ -1,0 +1,3219 @@
+{
+  "meta": {
+    "generated_at": "2026-06-02T06:32:59.362457",
+    "total": 60,
+    "fault_types": 10,
+    "stats": {
+      "cpu_spike": 6,
+      "memory_leak": 6,
+      "slow_query": 6,
+      "null_pointer": 6,
+      "dep_timeout": 6,
+      "disk_full": 6,
+      "network_partition": 6,
+      "cert_expiry": 6,
+      "config_error": 6,
+      "deploy_regression": 6
+    }
+  },
+  "incidents": [
+    {
+      "id": "sim-cpu_spike-000",
+      "fault_type": "cpu_spike",
+      "service": "search-service",
+      "language": "Java",
+      "region": "us-east-1",
+      "severity": "critical",
+      "timestamp": "2026-05-31T18:32:59.357601",
+      "title": "High CPU on search-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-cpu_spike-0-0",
+          "title": "High CPU on search-service",
+          "description": "CPU > 95% for 10 minutes on search-service",
+          "severity": "critical",
+          "service": "search-service",
+          "timestamp": "2026-05-31T18:32:59.357601"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-cpu_spike-0-1",
+          "title": "CPU threshold breach on search-service",
+          "description": "CPU utilization sustained above 90%",
+          "severity": "warning",
+          "service": "search-service",
+          "timestamp": "2026-05-31T18:35:59.357601"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-6954a8354718",
+          "message": "fix: add rate limiting to search-service endpoint",
+          "author": "dev1",
+          "files_changed": 3,
+          "timestamp": "2026-05-31T09:32:59.357601"
+        },
+        {
+          "sha": "sim-ec0017a8be16",
+          "message": "feat: add new data processing pipeline",
+          "author": "dev2",
+          "files_changed": 12,
+          "timestamp": "2026-05-29T18:32:59.357601"
+        }
+      ],
+      "logs": [
+        "ERROR - Request processing time exceeded 30s",
+        "WARN - Thread pool exhausted, rejecting request",
+        "ERROR - connection reset by peer"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Inefficient data processing pipeline in search-service causing CPU saturation. New pipeline feature added excessive computation per request without rate limiting.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-cpu_spike-001",
+      "fault_type": "cpu_spike",
+      "service": "search-service",
+      "language": "Rust",
+      "region": "us-east-1",
+      "severity": "critical",
+      "timestamp": "2026-05-30T23:32:59.357930",
+      "title": "High CPU on search-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-cpu_spike-1-0",
+          "title": "High CPU on search-service",
+          "description": "CPU > 95% for 10 minutes on search-service",
+          "severity": "critical",
+          "service": "search-service",
+          "timestamp": "2026-05-30T23:32:59.357930"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-cpu_spike-1-1",
+          "title": "CPU threshold breach on search-service",
+          "description": "CPU utilization sustained above 90%",
+          "severity": "warning",
+          "service": "search-service",
+          "timestamp": "2026-05-30T23:35:59.357930"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-7a9eba911f82",
+          "message": "fix: add rate limiting to search-service endpoint",
+          "author": "dev1",
+          "files_changed": 3,
+          "timestamp": "2026-05-30T17:32:59.357930"
+        },
+        {
+          "sha": "sim-5c90d4196e0e",
+          "message": "feat: add new data processing pipeline",
+          "author": "dev2",
+          "files_changed": 12,
+          "timestamp": "2026-05-30T09:32:59.357930"
+        }
+      ],
+      "logs": [
+        "ERROR - Request processing time exceeded 30s",
+        "WARN - Thread pool exhausted, rejecting request",
+        "ERROR - connection reset by peer"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Inefficient data processing pipeline in search-service causing CPU saturation. New pipeline feature added excessive computation per request without rate limiting.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-cpu_spike-002",
+      "fault_type": "cpu_spike",
+      "service": "notification-service",
+      "language": "Rust",
+      "region": "us-east-1",
+      "severity": "warning",
+      "timestamp": "2026-05-30T06:32:59.358077",
+      "title": "High CPU on notification-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-cpu_spike-2-0",
+          "title": "High CPU on notification-service",
+          "description": "CPU > 95% for 10 minutes on notification-service",
+          "severity": "critical",
+          "service": "notification-service",
+          "timestamp": "2026-05-30T06:32:59.358077"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-cpu_spike-2-1",
+          "title": "CPU threshold breach on notification-service",
+          "description": "CPU utilization sustained above 90%",
+          "severity": "warning",
+          "service": "notification-service",
+          "timestamp": "2026-05-30T06:35:59.358077"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-e577f5c14d0d",
+          "message": "fix: add rate limiting to notification-service endpoint",
+          "author": "dev1",
+          "files_changed": 3,
+          "timestamp": "2026-05-29T15:32:59.358077"
+        },
+        {
+          "sha": "sim-7bf9c4705b61",
+          "message": "feat: add new data processing pipeline",
+          "author": "dev2",
+          "files_changed": 12,
+          "timestamp": "2026-05-29T01:32:59.358077"
+        }
+      ],
+      "logs": [
+        "ERROR - Request processing time exceeded 30s",
+        "WARN - Thread pool exhausted, rejecting request",
+        "ERROR - connection reset by peer"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Inefficient data processing pipeline in notification-service causing CPU saturation. New pipeline feature added excessive computation per request without rate limiting.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-cpu_spike-003",
+      "fault_type": "cpu_spike",
+      "service": "payment-service",
+      "language": "Java",
+      "region": "us-west-2",
+      "severity": "critical",
+      "timestamp": "2026-05-30T23:32:59.358192",
+      "title": "High CPU on payment-service",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-cpu_spike-3-0",
+          "title": "High CPU on payment-service",
+          "description": "CPU > 95% for 10 minutes on payment-service",
+          "severity": "critical",
+          "service": "payment-service",
+          "timestamp": "2026-05-30T23:32:59.358192"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-cpu_spike-3-1",
+          "title": "CPU threshold breach on payment-service",
+          "description": "CPU utilization sustained above 90%",
+          "severity": "warning",
+          "service": "payment-service",
+          "timestamp": "2026-05-30T23:35:59.358192"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-a2e08f3d6852",
+          "message": "fix: add rate limiting to payment-service endpoint",
+          "author": "dev1",
+          "files_changed": 3,
+          "timestamp": "2026-05-30T13:32:59.358192"
+        },
+        {
+          "sha": "sim-ccea9012182a",
+          "message": "feat: add new data processing pipeline",
+          "author": "dev2",
+          "files_changed": 12,
+          "timestamp": "2026-05-30T09:32:59.358192"
+        }
+      ],
+      "logs": [
+        "ERROR - Request processing time exceeded 30s",
+        "WARN - Thread pool exhausted, rejecting request",
+        "ERROR - connection reset by peer"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Inefficient data processing pipeline in payment-service causing CPU saturation. New pipeline feature added excessive computation per request without rate limiting.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-cpu_spike-004",
+      "fault_type": "cpu_spike",
+      "service": "api-gateway",
+      "language": "Java",
+      "region": "ap-southeast-1",
+      "severity": "critical",
+      "timestamp": "2026-06-01T17:32:59.358292",
+      "title": "High CPU on api-gateway",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-cpu_spike-4-0",
+          "title": "High CPU on api-gateway",
+          "description": "CPU > 95% for 10 minutes on api-gateway",
+          "severity": "critical",
+          "service": "api-gateway",
+          "timestamp": "2026-06-01T17:32:59.358292"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-cpu_spike-4-1",
+          "title": "CPU threshold breach on api-gateway",
+          "description": "CPU utilization sustained above 90%",
+          "severity": "warning",
+          "service": "api-gateway",
+          "timestamp": "2026-06-01T17:35:59.358292"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-b2c86aa102b3",
+          "message": "fix: add rate limiting to api-gateway endpoint",
+          "author": "dev1",
+          "files_changed": 3,
+          "timestamp": "2026-05-31T02:32:59.358292"
+        },
+        {
+          "sha": "sim-302e0f4b1d80",
+          "message": "feat: add new data processing pipeline",
+          "author": "dev2",
+          "files_changed": 12,
+          "timestamp": "2026-06-01T00:32:59.358292"
+        }
+      ],
+      "logs": [
+        "ERROR - Request processing time exceeded 30s",
+        "WARN - Thread pool exhausted, rejecting request",
+        "ERROR - connection reset by peer"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Inefficient data processing pipeline in api-gateway causing CPU saturation. New pipeline feature added excessive computation per request without rate limiting.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-cpu_spike-005",
+      "fault_type": "cpu_spike",
+      "service": "search-service",
+      "language": "Node.js",
+      "region": "us-east-1",
+      "severity": "critical",
+      "timestamp": "2026-05-31T05:32:59.358381",
+      "title": "High CPU on search-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-cpu_spike-5-0",
+          "title": "High CPU on search-service",
+          "description": "CPU > 95% for 10 minutes on search-service",
+          "severity": "critical",
+          "service": "search-service",
+          "timestamp": "2026-05-31T05:32:59.358381"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-cpu_spike-5-1",
+          "title": "CPU threshold breach on search-service",
+          "description": "CPU utilization sustained above 90%",
+          "severity": "warning",
+          "service": "search-service",
+          "timestamp": "2026-05-31T05:35:59.358381"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-bd293a8a75f8",
+          "message": "fix: add rate limiting to search-service endpoint",
+          "author": "dev1",
+          "files_changed": 3,
+          "timestamp": "2026-05-29T12:32:59.358381"
+        },
+        {
+          "sha": "sim-8b94c4339ef4",
+          "message": "feat: add new data processing pipeline",
+          "author": "dev2",
+          "files_changed": 12,
+          "timestamp": "2026-05-29T13:32:59.358381"
+        }
+      ],
+      "logs": [
+        "ERROR - Request processing time exceeded 30s",
+        "WARN - Thread pool exhausted, rejecting request",
+        "ERROR - connection reset by peer"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Inefficient data processing pipeline in search-service causing CPU saturation. New pipeline feature added excessive computation per request without rate limiting.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-memory_leak-000",
+      "fault_type": "memory_leak",
+      "service": "notification-service",
+      "language": "Go",
+      "region": "us-east-1",
+      "severity": "critical",
+      "timestamp": "2026-06-02T00:32:59.358457",
+      "title": "OOM on notification-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-memory_leak-0-0",
+          "title": "OOM on notification-service",
+          "description": "Memory usage > 95% on notification-service instances",
+          "severity": "critical",
+          "service": "notification-service",
+          "timestamp": "2026-06-02T00:32:59.358457"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-memory_leak-0-1",
+          "title": "Heap memory warning on notification-service",
+          "description": "Heap usage growing monotonically",
+          "severity": "warning",
+          "service": "notification-service",
+          "timestamp": "2026-06-02T00:35:59.358457"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-16e3b2fb565b",
+          "message": "fix: close database connections properly",
+          "author": "dev3",
+          "files_changed": 1,
+          "timestamp": "2026-06-01T18:32:59.358457"
+        },
+        {
+          "sha": "sim-58f290afe662",
+          "message": "feat: add in-memory result cache",
+          "author": "dev1",
+          "files_changed": 5,
+          "timestamp": "2026-06-01T09:32:59.358457"
+        },
+        {
+          "sha": "sim-2154685198f7",
+          "message": "refactor: update session management",
+          "author": "dev2",
+          "files_changed": 8,
+          "timestamp": "2026-06-01T17:32:59.358457"
+        }
+      ],
+      "logs": [
+        "ERROR - java.lang.OutOfMemoryError: Java heap space",
+        "WARN - GC overhead limit exceeded",
+        "ERROR - Unable to create new native thread"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Memory leak in notification-service caused by unbounded in-memory result cache. Cache entries are never evicted, causing heap to grow until OOM.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-memory_leak-001",
+      "fault_type": "memory_leak",
+      "service": "payment-service",
+      "language": "Node.js",
+      "region": "eu-west-1",
+      "severity": "warning",
+      "timestamp": "2026-06-01T09:32:59.358543",
+      "title": "OOM on payment-service",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-memory_leak-1-0",
+          "title": "OOM on payment-service",
+          "description": "Memory usage > 95% on payment-service instances",
+          "severity": "critical",
+          "service": "payment-service",
+          "timestamp": "2026-06-01T09:32:59.358543"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-memory_leak-1-1",
+          "title": "Heap memory warning on payment-service",
+          "description": "Heap usage growing monotonically",
+          "severity": "warning",
+          "service": "payment-service",
+          "timestamp": "2026-06-01T09:35:59.358543"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-659b60b2bea7",
+          "message": "fix: close database connections properly",
+          "author": "dev3",
+          "files_changed": 1,
+          "timestamp": "2026-05-31T19:32:59.358543"
+        },
+        {
+          "sha": "sim-9dc4807a7f9b",
+          "message": "feat: add in-memory result cache",
+          "author": "dev1",
+          "files_changed": 5,
+          "timestamp": "2026-05-30T14:32:59.358543"
+        },
+        {
+          "sha": "sim-254dc596c24a",
+          "message": "refactor: update session management",
+          "author": "dev2",
+          "files_changed": 8,
+          "timestamp": "2026-05-31T15:32:59.358543"
+        }
+      ],
+      "logs": [
+        "ERROR - java.lang.OutOfMemoryError: Java heap space",
+        "WARN - GC overhead limit exceeded",
+        "ERROR - Unable to create new native thread"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Memory leak in payment-service caused by unbounded in-memory result cache. Cache entries are never evicted, causing heap to grow until OOM.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-memory_leak-002",
+      "fault_type": "memory_leak",
+      "service": "search-service",
+      "language": "Java",
+      "region": "us-west-2",
+      "severity": "warning",
+      "timestamp": "2026-05-30T09:32:59.358622",
+      "title": "OOM on search-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-memory_leak-2-0",
+          "title": "OOM on search-service",
+          "description": "Memory usage > 95% on search-service instances",
+          "severity": "critical",
+          "service": "search-service",
+          "timestamp": "2026-05-30T09:32:59.358622"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-memory_leak-2-1",
+          "title": "Heap memory warning on search-service",
+          "description": "Heap usage growing monotonically",
+          "severity": "warning",
+          "service": "search-service",
+          "timestamp": "2026-05-30T09:35:59.358622"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-2c1218788112",
+          "message": "fix: close database connections properly",
+          "author": "dev3",
+          "files_changed": 1,
+          "timestamp": "2026-05-29T03:32:59.358622"
+        },
+        {
+          "sha": "sim-b2fbceba41bd",
+          "message": "feat: add in-memory result cache",
+          "author": "dev1",
+          "files_changed": 5,
+          "timestamp": "2026-05-29T08:32:59.358622"
+        },
+        {
+          "sha": "sim-a449845d82d6",
+          "message": "refactor: update session management",
+          "author": "dev2",
+          "files_changed": 8,
+          "timestamp": "2026-05-29T15:32:59.358622"
+        }
+      ],
+      "logs": [
+        "ERROR - java.lang.OutOfMemoryError: Java heap space",
+        "WARN - GC overhead limit exceeded",
+        "ERROR - Unable to create new native thread"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Memory leak in search-service caused by unbounded in-memory result cache. Cache entries are never evicted, causing heap to grow until OOM.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-memory_leak-003",
+      "fault_type": "memory_leak",
+      "service": "search-service",
+      "language": "Rust",
+      "region": "us-west-2",
+      "severity": "critical",
+      "timestamp": "2026-05-31T12:32:59.358695",
+      "title": "OOM on search-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-memory_leak-3-0",
+          "title": "OOM on search-service",
+          "description": "Memory usage > 95% on search-service instances",
+          "severity": "critical",
+          "service": "search-service",
+          "timestamp": "2026-05-31T12:32:59.358695"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-memory_leak-3-1",
+          "title": "Heap memory warning on search-service",
+          "description": "Heap usage growing monotonically",
+          "severity": "warning",
+          "service": "search-service",
+          "timestamp": "2026-05-31T12:35:59.358695"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-c080ed686822",
+          "message": "fix: close database connections properly",
+          "author": "dev3",
+          "files_changed": 1,
+          "timestamp": "2026-05-31T09:32:59.358695"
+        },
+        {
+          "sha": "sim-e13e2f0e97a0",
+          "message": "feat: add in-memory result cache",
+          "author": "dev1",
+          "files_changed": 5,
+          "timestamp": "2026-05-30T15:32:59.358695"
+        },
+        {
+          "sha": "sim-af86ce5eee58",
+          "message": "refactor: update session management",
+          "author": "dev2",
+          "files_changed": 8,
+          "timestamp": "2026-05-30T10:32:59.358695"
+        }
+      ],
+      "logs": [
+        "ERROR - java.lang.OutOfMemoryError: Java heap space",
+        "WARN - GC overhead limit exceeded",
+        "ERROR - Unable to create new native thread"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Memory leak in search-service caused by unbounded in-memory result cache. Cache entries are never evicted, causing heap to grow until OOM.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-memory_leak-004",
+      "fault_type": "memory_leak",
+      "service": "api-gateway",
+      "language": "Go",
+      "region": "eu-west-1",
+      "severity": "critical",
+      "timestamp": "2026-06-01T02:32:59.358773",
+      "title": "OOM on api-gateway",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-memory_leak-4-0",
+          "title": "OOM on api-gateway",
+          "description": "Memory usage > 95% on api-gateway instances",
+          "severity": "critical",
+          "service": "api-gateway",
+          "timestamp": "2026-06-01T02:32:59.358773"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-memory_leak-4-1",
+          "title": "Heap memory warning on api-gateway",
+          "description": "Heap usage growing monotonically",
+          "severity": "warning",
+          "service": "api-gateway",
+          "timestamp": "2026-06-01T02:35:59.358773"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-0b5a5927f4ec",
+          "message": "fix: close database connections properly",
+          "author": "dev3",
+          "files_changed": 1,
+          "timestamp": "2026-05-30T08:32:59.358773"
+        },
+        {
+          "sha": "sim-dcb82688c53c",
+          "message": "feat: add in-memory result cache",
+          "author": "dev1",
+          "files_changed": 5,
+          "timestamp": "2026-05-30T20:32:59.358773"
+        },
+        {
+          "sha": "sim-14000519b2a8",
+          "message": "refactor: update session management",
+          "author": "dev2",
+          "files_changed": 8,
+          "timestamp": "2026-05-31T16:32:59.358773"
+        }
+      ],
+      "logs": [
+        "ERROR - java.lang.OutOfMemoryError: Java heap space",
+        "WARN - GC overhead limit exceeded",
+        "ERROR - Unable to create new native thread"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Memory leak in api-gateway caused by unbounded in-memory result cache. Cache entries are never evicted, causing heap to grow until OOM.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-memory_leak-005",
+      "fault_type": "memory_leak",
+      "service": "user-service",
+      "language": "Go",
+      "region": "eu-west-1",
+      "severity": "critical",
+      "timestamp": "2026-05-30T23:32:59.358858",
+      "title": "OOM on user-service",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-memory_leak-5-0",
+          "title": "OOM on user-service",
+          "description": "Memory usage > 95% on user-service instances",
+          "severity": "critical",
+          "service": "user-service",
+          "timestamp": "2026-05-30T23:32:59.358858"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-memory_leak-5-1",
+          "title": "Heap memory warning on user-service",
+          "description": "Heap usage growing monotonically",
+          "severity": "warning",
+          "service": "user-service",
+          "timestamp": "2026-05-30T23:35:59.358858"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-a19c5f4ee2c9",
+          "message": "fix: close database connections properly",
+          "author": "dev3",
+          "files_changed": 1,
+          "timestamp": "2026-05-30T08:32:59.358858"
+        },
+        {
+          "sha": "sim-2fadb3732cf4",
+          "message": "feat: add in-memory result cache",
+          "author": "dev1",
+          "files_changed": 5,
+          "timestamp": "2026-05-30T14:32:59.358858"
+        },
+        {
+          "sha": "sim-66d720e7d64a",
+          "message": "refactor: update session management",
+          "author": "dev2",
+          "files_changed": 8,
+          "timestamp": "2026-05-29T14:32:59.358858"
+        }
+      ],
+      "logs": [
+        "ERROR - java.lang.OutOfMemoryError: Java heap space",
+        "WARN - GC overhead limit exceeded",
+        "ERROR - Unable to create new native thread"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Memory leak in user-service caused by unbounded in-memory result cache. Cache entries are never evicted, causing heap to grow until OOM.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-slow_query-000",
+      "fault_type": "slow_query",
+      "service": "api-gateway",
+      "language": "Java",
+      "region": "us-east-1",
+      "severity": "critical",
+      "timestamp": "2026-06-01T10:32:59.358920",
+      "title": "DB query timeout on api-gateway",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-slow_query-0-0",
+          "title": "DB query timeout on api-gateway",
+          "description": "P95 query latency > 5s on primary database",
+          "severity": "critical",
+          "service": "api-gateway",
+          "timestamp": "2026-06-01T10:32:59.358920"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-slow_query-0-1",
+          "title": "Connection pool exhaustion",
+          "description": "Database connections maxed out",
+          "severity": "warning",
+          "service": "api-gateway",
+          "timestamp": "2026-06-01T10:35:59.358920"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-089ac78e26f5",
+          "message": "feat: add user analytics dashboard",
+          "author": "dev4",
+          "files_changed": 6,
+          "timestamp": "2026-05-30T19:32:59.358920"
+        },
+        {
+          "sha": "sim-2dc1ca241b01",
+          "message": "perf: add index to orders table",
+          "author": "dev3",
+          "files_changed": 1,
+          "timestamp": "2026-06-01T05:32:59.358920"
+        }
+      ],
+      "logs": [
+        "WARN - Slow query detected: SELECT * FROM orders WHERE user_id NOT IN (SELECT id FROM active_users) — 8.3s",
+        "ERROR - PostgreSQL: canceling statement due to statement timeout",
+        "WARN - connection pool at 95% capacity"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Unoptimized query in api-gateway analytics dashboard: full table scan on orders with NOT IN subquery. Missing index and lack of pagination causes database CPU spike.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-slow_query-001",
+      "fault_type": "slow_query",
+      "service": "order-service",
+      "language": "Rust",
+      "region": "ap-southeast-1",
+      "severity": "critical",
+      "timestamp": "2026-05-30T10:32:59.358971",
+      "title": "DB query timeout on order-service",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-slow_query-1-0",
+          "title": "DB query timeout on order-service",
+          "description": "P95 query latency > 5s on primary database",
+          "severity": "critical",
+          "service": "order-service",
+          "timestamp": "2026-05-30T10:32:59.358971"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-slow_query-1-1",
+          "title": "Connection pool exhaustion",
+          "description": "Database connections maxed out",
+          "severity": "warning",
+          "service": "order-service",
+          "timestamp": "2026-05-30T10:35:59.358971"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-dc74474078a9",
+          "message": "feat: add user analytics dashboard",
+          "author": "dev4",
+          "files_changed": 6,
+          "timestamp": "2026-05-28T14:32:59.358971"
+        },
+        {
+          "sha": "sim-a63be122f075",
+          "message": "perf: add index to orders table",
+          "author": "dev3",
+          "files_changed": 1,
+          "timestamp": "2026-05-28T11:32:59.358971"
+        }
+      ],
+      "logs": [
+        "WARN - Slow query detected: SELECT * FROM orders WHERE user_id NOT IN (SELECT id FROM active_users) — 8.3s",
+        "ERROR - PostgreSQL: canceling statement due to statement timeout",
+        "WARN - connection pool at 95% capacity"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Unoptimized query in order-service analytics dashboard: full table scan on orders with NOT IN subquery. Missing index and lack of pagination causes database CPU spike.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-slow_query-002",
+      "fault_type": "slow_query",
+      "service": "search-service",
+      "language": "Rust",
+      "region": "eu-west-1",
+      "severity": "critical",
+      "timestamp": "2026-05-31T10:32:59.359013",
+      "title": "DB query timeout on search-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-slow_query-2-0",
+          "title": "DB query timeout on search-service",
+          "description": "P95 query latency > 5s on primary database",
+          "severity": "critical",
+          "service": "search-service",
+          "timestamp": "2026-05-31T10:32:59.359013"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-slow_query-2-1",
+          "title": "Connection pool exhaustion",
+          "description": "Database connections maxed out",
+          "severity": "warning",
+          "service": "search-service",
+          "timestamp": "2026-05-31T10:35:59.359013"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-f0d81dda91e7",
+          "message": "feat: add user analytics dashboard",
+          "author": "dev4",
+          "files_changed": 6,
+          "timestamp": "2026-05-30T06:32:59.359013"
+        },
+        {
+          "sha": "sim-7f09303d7f39",
+          "message": "perf: add index to orders table",
+          "author": "dev3",
+          "files_changed": 1,
+          "timestamp": "2026-05-30T23:32:59.359013"
+        }
+      ],
+      "logs": [
+        "WARN - Slow query detected: SELECT * FROM orders WHERE user_id NOT IN (SELECT id FROM active_users) — 8.3s",
+        "ERROR - PostgreSQL: canceling statement due to statement timeout",
+        "WARN - connection pool at 95% capacity"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Unoptimized query in search-service analytics dashboard: full table scan on orders with NOT IN subquery. Missing index and lack of pagination causes database CPU spike.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-slow_query-003",
+      "fault_type": "slow_query",
+      "service": "api-gateway",
+      "language": "Python",
+      "region": "us-west-2",
+      "severity": "warning",
+      "timestamp": "2026-05-30T13:32:59.359055",
+      "title": "DB query timeout on api-gateway",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-slow_query-3-0",
+          "title": "DB query timeout on api-gateway",
+          "description": "P95 query latency > 5s on primary database",
+          "severity": "critical",
+          "service": "api-gateway",
+          "timestamp": "2026-05-30T13:32:59.359055"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-slow_query-3-1",
+          "title": "Connection pool exhaustion",
+          "description": "Database connections maxed out",
+          "severity": "warning",
+          "service": "api-gateway",
+          "timestamp": "2026-05-30T13:35:59.359055"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-580a5c11fa7b",
+          "message": "feat: add user analytics dashboard",
+          "author": "dev4",
+          "files_changed": 6,
+          "timestamp": "2026-05-28T20:32:59.359055"
+        },
+        {
+          "sha": "sim-7bc9c5face94",
+          "message": "perf: add index to orders table",
+          "author": "dev3",
+          "files_changed": 1,
+          "timestamp": "2026-05-29T04:32:59.359055"
+        }
+      ],
+      "logs": [
+        "WARN - Slow query detected: SELECT * FROM orders WHERE user_id NOT IN (SELECT id FROM active_users) — 8.3s",
+        "ERROR - PostgreSQL: canceling statement due to statement timeout",
+        "WARN - connection pool at 95% capacity"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Unoptimized query in api-gateway analytics dashboard: full table scan on orders with NOT IN subquery. Missing index and lack of pagination causes database CPU spike.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-slow_query-004",
+      "fault_type": "slow_query",
+      "service": "user-service",
+      "language": "Go",
+      "region": "eu-west-1",
+      "severity": "critical",
+      "timestamp": "2026-06-01T09:32:59.359096",
+      "title": "DB query timeout on user-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-slow_query-4-0",
+          "title": "DB query timeout on user-service",
+          "description": "P95 query latency > 5s on primary database",
+          "severity": "critical",
+          "service": "user-service",
+          "timestamp": "2026-06-01T09:32:59.359096"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-slow_query-4-1",
+          "title": "Connection pool exhaustion",
+          "description": "Database connections maxed out",
+          "severity": "warning",
+          "service": "user-service",
+          "timestamp": "2026-06-01T09:35:59.359096"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-bd93a07ee161",
+          "message": "feat: add user analytics dashboard",
+          "author": "dev4",
+          "files_changed": 6,
+          "timestamp": "2026-05-31T01:32:59.359096"
+        },
+        {
+          "sha": "sim-3a98e81c5ea0",
+          "message": "perf: add index to orders table",
+          "author": "dev3",
+          "files_changed": 1,
+          "timestamp": "2026-06-01T07:32:59.359096"
+        }
+      ],
+      "logs": [
+        "WARN - Slow query detected: SELECT * FROM orders WHERE user_id NOT IN (SELECT id FROM active_users) — 8.3s",
+        "ERROR - PostgreSQL: canceling statement due to statement timeout",
+        "WARN - connection pool at 95% capacity"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Unoptimized query in user-service analytics dashboard: full table scan on orders with NOT IN subquery. Missing index and lack of pagination causes database CPU spike.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-slow_query-005",
+      "fault_type": "slow_query",
+      "service": "payment-service",
+      "language": "Python",
+      "region": "us-west-2",
+      "severity": "critical",
+      "timestamp": "2026-06-01T22:32:59.359143",
+      "title": "DB query timeout on payment-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-slow_query-5-0",
+          "title": "DB query timeout on payment-service",
+          "description": "P95 query latency > 5s on primary database",
+          "severity": "critical",
+          "service": "payment-service",
+          "timestamp": "2026-06-01T22:32:59.359143"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-slow_query-5-1",
+          "title": "Connection pool exhaustion",
+          "description": "Database connections maxed out",
+          "severity": "warning",
+          "service": "payment-service",
+          "timestamp": "2026-06-01T22:35:59.359143"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-59fc036e98ab",
+          "message": "feat: add user analytics dashboard",
+          "author": "dev4",
+          "files_changed": 6,
+          "timestamp": "2026-06-01T16:32:59.359143"
+        },
+        {
+          "sha": "sim-a1c23d9c4fac",
+          "message": "perf: add index to orders table",
+          "author": "dev3",
+          "files_changed": 1,
+          "timestamp": "2026-05-30T23:32:59.359143"
+        }
+      ],
+      "logs": [
+        "WARN - Slow query detected: SELECT * FROM orders WHERE user_id NOT IN (SELECT id FROM active_users) — 8.3s",
+        "ERROR - PostgreSQL: canceling statement due to statement timeout",
+        "WARN - connection pool at 95% capacity"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Unoptimized query in payment-service analytics dashboard: full table scan on orders with NOT IN subquery. Missing index and lack of pagination causes database CPU spike.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-null_pointer-000",
+      "fault_type": "null_pointer",
+      "service": "api-gateway",
+      "language": "Rust",
+      "region": "us-west-2",
+      "severity": "warning",
+      "timestamp": "2026-06-01T13:32:59.359187",
+      "title": "High error rate on api-gateway",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-null_pointer-0-0",
+          "title": "High error rate on api-gateway",
+          "description": "500 errors > 5% of requests on api-gateway",
+          "severity": "critical",
+          "service": "api-gateway",
+          "timestamp": "2026-06-01T13:32:59.359187"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-null_pointer-0-1",
+          "title": "Service degradation on api-gateway",
+          "description": "Error rate spike to 12%",
+          "severity": "critical",
+          "service": "api-gateway",
+          "timestamp": "2026-06-01T13:35:59.359187"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-b4d711d929fb",
+          "message": "fix: handle null user profile in response",
+          "author": "dev1",
+          "files_changed": 2,
+          "timestamp": "2026-05-31T20:32:59.359187"
+        }
+      ],
+      "logs": [
+        "ERROR - NullPointerException: Cannot invoke 'User.getName()' because 'user' is null",
+        "ERROR - at com.api-gateway.UserController.getProfile(UserController.java:82)",
+        "WARN - request failed: GET /api/users/profile"
+      ],
+      "incident_count": 2,
+      "ground_truth": "NullPointerException in api-gateway UserController.getProfile() at line 82. A recent fix attempted to handle null user profile but missed the case where user object itself is null, not just the profile.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-null_pointer-001",
+      "fault_type": "null_pointer",
+      "service": "notification-service",
+      "language": "Node.js",
+      "region": "us-west-2",
+      "severity": "warning",
+      "timestamp": "2026-05-30T08:32:59.359228",
+      "title": "High error rate on notification-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-null_pointer-1-0",
+          "title": "High error rate on notification-service",
+          "description": "500 errors > 5% of requests on notification-service",
+          "severity": "critical",
+          "service": "notification-service",
+          "timestamp": "2026-05-30T08:32:59.359228"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-null_pointer-1-1",
+          "title": "Service degradation on notification-service",
+          "description": "Error rate spike to 12%",
+          "severity": "critical",
+          "service": "notification-service",
+          "timestamp": "2026-05-30T08:35:59.359228"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-f3396811d90f",
+          "message": "fix: handle null user profile in response",
+          "author": "dev1",
+          "files_changed": 2,
+          "timestamp": "2026-05-29T06:32:59.359228"
+        }
+      ],
+      "logs": [
+        "ERROR - NullPointerException: Cannot invoke 'User.getName()' because 'user' is null",
+        "ERROR - at com.notification-service.UserController.getProfile(UserController.java:82)",
+        "WARN - request failed: GET /api/users/profile"
+      ],
+      "incident_count": 2,
+      "ground_truth": "NullPointerException in notification-service UserController.getProfile() at line 82. A recent fix attempted to handle null user profile but missed the case where user object itself is null, not just the profile.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-null_pointer-002",
+      "fault_type": "null_pointer",
+      "service": "search-service",
+      "language": "Python",
+      "region": "ap-southeast-1",
+      "severity": "critical",
+      "timestamp": "2026-05-30T11:32:59.360642",
+      "title": "High error rate on search-service",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-null_pointer-2-0",
+          "title": "High error rate on search-service",
+          "description": "500 errors > 5% of requests on search-service",
+          "severity": "critical",
+          "service": "search-service",
+          "timestamp": "2026-05-30T11:32:59.360642"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-null_pointer-2-1",
+          "title": "Service degradation on search-service",
+          "description": "Error rate spike to 12%",
+          "severity": "critical",
+          "service": "search-service",
+          "timestamp": "2026-05-30T11:35:59.360642"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-1ab1d75af8f5",
+          "message": "fix: handle null user profile in response",
+          "author": "dev1",
+          "files_changed": 2,
+          "timestamp": "2026-05-29T19:32:59.360642"
+        }
+      ],
+      "logs": [
+        "ERROR - NullPointerException: Cannot invoke 'User.getName()' because 'user' is null",
+        "ERROR - at com.search-service.UserController.getProfile(UserController.java:82)",
+        "WARN - request failed: GET /api/users/profile"
+      ],
+      "incident_count": 2,
+      "ground_truth": "NullPointerException in search-service UserController.getProfile() at line 82. A recent fix attempted to handle null user profile but missed the case where user object itself is null, not just the profile.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-null_pointer-003",
+      "fault_type": "null_pointer",
+      "service": "api-gateway",
+      "language": "Python",
+      "region": "us-east-1",
+      "severity": "critical",
+      "timestamp": "2026-05-30T07:32:59.360695",
+      "title": "High error rate on api-gateway",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-null_pointer-3-0",
+          "title": "High error rate on api-gateway",
+          "description": "500 errors > 5% of requests on api-gateway",
+          "severity": "critical",
+          "service": "api-gateway",
+          "timestamp": "2026-05-30T07:32:59.360695"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-null_pointer-3-1",
+          "title": "Service degradation on api-gateway",
+          "description": "Error rate spike to 12%",
+          "severity": "critical",
+          "service": "api-gateway",
+          "timestamp": "2026-05-30T07:35:59.360695"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-725953da9034",
+          "message": "fix: handle null user profile in response",
+          "author": "dev1",
+          "files_changed": 2,
+          "timestamp": "2026-05-30T06:32:59.360695"
+        }
+      ],
+      "logs": [
+        "ERROR - NullPointerException: Cannot invoke 'User.getName()' because 'user' is null",
+        "ERROR - at com.api-gateway.UserController.getProfile(UserController.java:82)",
+        "WARN - request failed: GET /api/users/profile"
+      ],
+      "incident_count": 2,
+      "ground_truth": "NullPointerException in api-gateway UserController.getProfile() at line 82. A recent fix attempted to handle null user profile but missed the case where user object itself is null, not just the profile.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-null_pointer-004",
+      "fault_type": "null_pointer",
+      "service": "search-service",
+      "language": "Java",
+      "region": "us-west-2",
+      "severity": "warning",
+      "timestamp": "2026-06-01T21:32:59.360733",
+      "title": "High error rate on search-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-null_pointer-4-0",
+          "title": "High error rate on search-service",
+          "description": "500 errors > 5% of requests on search-service",
+          "severity": "critical",
+          "service": "search-service",
+          "timestamp": "2026-06-01T21:32:59.360733"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-null_pointer-4-1",
+          "title": "Service degradation on search-service",
+          "description": "Error rate spike to 12%",
+          "severity": "critical",
+          "service": "search-service",
+          "timestamp": "2026-06-01T21:35:59.360733"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-504619ba2ed2",
+          "message": "fix: handle null user profile in response",
+          "author": "dev1",
+          "files_changed": 2,
+          "timestamp": "2026-06-01T16:32:59.360733"
+        }
+      ],
+      "logs": [
+        "ERROR - NullPointerException: Cannot invoke 'User.getName()' because 'user' is null",
+        "ERROR - at com.search-service.UserController.getProfile(UserController.java:82)",
+        "WARN - request failed: GET /api/users/profile"
+      ],
+      "incident_count": 2,
+      "ground_truth": "NullPointerException in search-service UserController.getProfile() at line 82. A recent fix attempted to handle null user profile but missed the case where user object itself is null, not just the profile.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-null_pointer-005",
+      "fault_type": "null_pointer",
+      "service": "user-service",
+      "language": "Python",
+      "region": "ap-southeast-1",
+      "severity": "critical",
+      "timestamp": "2026-06-01T02:32:59.360770",
+      "title": "High error rate on user-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-null_pointer-5-0",
+          "title": "High error rate on user-service",
+          "description": "500 errors > 5% of requests on user-service",
+          "severity": "critical",
+          "service": "user-service",
+          "timestamp": "2026-06-01T02:32:59.360770"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-null_pointer-5-1",
+          "title": "Service degradation on user-service",
+          "description": "Error rate spike to 12%",
+          "severity": "critical",
+          "service": "user-service",
+          "timestamp": "2026-06-01T02:35:59.360770"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-63ca4c8fd842",
+          "message": "fix: handle null user profile in response",
+          "author": "dev1",
+          "files_changed": 2,
+          "timestamp": "2026-05-31T10:32:59.360770"
+        }
+      ],
+      "logs": [
+        "ERROR - NullPointerException: Cannot invoke 'User.getName()' because 'user' is null",
+        "ERROR - at com.user-service.UserController.getProfile(UserController.java:82)",
+        "WARN - request failed: GET /api/users/profile"
+      ],
+      "incident_count": 2,
+      "ground_truth": "NullPointerException in user-service UserController.getProfile() at line 82. A recent fix attempted to handle null user profile but missed the case where user object itself is null, not just the profile.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-dep_timeout-000",
+      "fault_type": "dep_timeout",
+      "service": "order-service",
+      "language": "Go",
+      "region": "us-east-1",
+      "severity": "critical",
+      "timestamp": "2026-06-01T17:32:59.360819",
+      "title": "Upstream timeout on order-service",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-dep_timeout-0-0",
+          "title": "Upstream timeout on order-service",
+          "description": "order-service failing to reach payment-gateway",
+          "severity": "critical",
+          "service": "order-service",
+          "timestamp": "2026-06-01T17:32:59.360819"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-dep_timeout-0-1",
+          "title": "External dependency degraded",
+          "description": "Payment gateway P99 latency > 10s",
+          "severity": "warning",
+          "service": "order-service",
+          "timestamp": "2026-06-01T17:35:59.360819"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-e7c216082aaa",
+          "message": "chore: bump payment SDK version to 3.2.1",
+          "author": "dev5",
+          "files_changed": 1,
+          "timestamp": "2026-05-31T13:32:59.360819"
+        },
+        {
+          "sha": "sim-c5a84c2423b7",
+          "message": "feat: add retry logic for payment calls",
+          "author": "dev4",
+          "files_changed": 3,
+          "timestamp": "2026-05-31T14:32:59.360819"
+        }
+      ],
+      "logs": [
+        "ERROR - HTTP timeout calling payment-gateway/charge after 30s",
+        "WARN - Retry attempt 2/3 for payment-gateway/charge",
+        "ERROR - circuit-breaker opened for payment-gateway"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Payment gateway SDK upgrade to v3.2.1 changed the default timeout from 60s to 10s. Combined with new retry logic, rapid retries overwhelm the downstream causing cascade failure.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-dep_timeout-001",
+      "fault_type": "dep_timeout",
+      "service": "search-service",
+      "language": "Java",
+      "region": "us-east-1",
+      "severity": "critical",
+      "timestamp": "2026-06-01T22:32:59.360880",
+      "title": "Upstream timeout on search-service",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-dep_timeout-1-0",
+          "title": "Upstream timeout on search-service",
+          "description": "search-service failing to reach payment-gateway",
+          "severity": "critical",
+          "service": "search-service",
+          "timestamp": "2026-06-01T22:32:59.360880"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-dep_timeout-1-1",
+          "title": "External dependency degraded",
+          "description": "Payment gateway P99 latency > 10s",
+          "severity": "warning",
+          "service": "search-service",
+          "timestamp": "2026-06-01T22:35:59.360880"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-0ae51f022f35",
+          "message": "chore: bump payment SDK version to 3.2.1",
+          "author": "dev5",
+          "files_changed": 1,
+          "timestamp": "2026-06-01T15:32:59.360880"
+        },
+        {
+          "sha": "sim-53f55a6d7446",
+          "message": "feat: add retry logic for payment calls",
+          "author": "dev4",
+          "files_changed": 3,
+          "timestamp": "2026-06-01T06:32:59.360880"
+        }
+      ],
+      "logs": [
+        "ERROR - HTTP timeout calling payment-gateway/charge after 30s",
+        "WARN - Retry attempt 2/3 for payment-gateway/charge",
+        "ERROR - circuit-breaker opened for payment-gateway"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Payment gateway SDK upgrade to v3.2.1 changed the default timeout from 60s to 10s. Combined with new retry logic, rapid retries overwhelm the downstream causing cascade failure.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-dep_timeout-002",
+      "fault_type": "dep_timeout",
+      "service": "user-service",
+      "language": "Rust",
+      "region": "ap-southeast-1",
+      "severity": "critical",
+      "timestamp": "2026-06-01T12:32:59.360923",
+      "title": "Upstream timeout on user-service",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-dep_timeout-2-0",
+          "title": "Upstream timeout on user-service",
+          "description": "user-service failing to reach payment-gateway",
+          "severity": "critical",
+          "service": "user-service",
+          "timestamp": "2026-06-01T12:32:59.360923"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-dep_timeout-2-1",
+          "title": "External dependency degraded",
+          "description": "Payment gateway P99 latency > 10s",
+          "severity": "warning",
+          "service": "user-service",
+          "timestamp": "2026-06-01T12:35:59.360923"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-e87d016653e1",
+          "message": "chore: bump payment SDK version to 3.2.1",
+          "author": "dev5",
+          "files_changed": 1,
+          "timestamp": "2026-05-31T18:32:59.360923"
+        },
+        {
+          "sha": "sim-e1994bc6d0c3",
+          "message": "feat: add retry logic for payment calls",
+          "author": "dev4",
+          "files_changed": 3,
+          "timestamp": "2026-05-31T06:32:59.360923"
+        }
+      ],
+      "logs": [
+        "ERROR - HTTP timeout calling payment-gateway/charge after 30s",
+        "WARN - Retry attempt 2/3 for payment-gateway/charge",
+        "ERROR - circuit-breaker opened for payment-gateway"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Payment gateway SDK upgrade to v3.2.1 changed the default timeout from 60s to 10s. Combined with new retry logic, rapid retries overwhelm the downstream causing cascade failure.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-dep_timeout-003",
+      "fault_type": "dep_timeout",
+      "service": "api-gateway",
+      "language": "Node.js",
+      "region": "us-east-1",
+      "severity": "critical",
+      "timestamp": "2026-06-01T23:32:59.360966",
+      "title": "Upstream timeout on api-gateway",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-dep_timeout-3-0",
+          "title": "Upstream timeout on api-gateway",
+          "description": "api-gateway failing to reach payment-gateway",
+          "severity": "critical",
+          "service": "api-gateway",
+          "timestamp": "2026-06-01T23:32:59.360966"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-dep_timeout-3-1",
+          "title": "External dependency degraded",
+          "description": "Payment gateway P99 latency > 10s",
+          "severity": "warning",
+          "service": "api-gateway",
+          "timestamp": "2026-06-01T23:35:59.360966"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-f37ce5765d7e",
+          "message": "chore: bump payment SDK version to 3.2.1",
+          "author": "dev5",
+          "files_changed": 1,
+          "timestamp": "2026-06-01T07:32:59.360966"
+        },
+        {
+          "sha": "sim-981357b7433d",
+          "message": "feat: add retry logic for payment calls",
+          "author": "dev4",
+          "files_changed": 3,
+          "timestamp": "2026-06-01T12:32:59.360966"
+        }
+      ],
+      "logs": [
+        "ERROR - HTTP timeout calling payment-gateway/charge after 30s",
+        "WARN - Retry attempt 2/3 for payment-gateway/charge",
+        "ERROR - circuit-breaker opened for payment-gateway"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Payment gateway SDK upgrade to v3.2.1 changed the default timeout from 60s to 10s. Combined with new retry logic, rapid retries overwhelm the downstream causing cascade failure.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-dep_timeout-004",
+      "fault_type": "dep_timeout",
+      "service": "order-service",
+      "language": "Node.js",
+      "region": "us-west-2",
+      "severity": "critical",
+      "timestamp": "2026-05-31T02:32:59.361011",
+      "title": "Upstream timeout on order-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-dep_timeout-4-0",
+          "title": "Upstream timeout on order-service",
+          "description": "order-service failing to reach payment-gateway",
+          "severity": "critical",
+          "service": "order-service",
+          "timestamp": "2026-05-31T02:32:59.361011"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-dep_timeout-4-1",
+          "title": "External dependency degraded",
+          "description": "Payment gateway P99 latency > 10s",
+          "severity": "warning",
+          "service": "order-service",
+          "timestamp": "2026-05-31T02:35:59.361011"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-57bbfcefa936",
+          "message": "chore: bump payment SDK version to 3.2.1",
+          "author": "dev5",
+          "files_changed": 1,
+          "timestamp": "2026-05-30T01:32:59.361011"
+        },
+        {
+          "sha": "sim-9e64c110b120",
+          "message": "feat: add retry logic for payment calls",
+          "author": "dev4",
+          "files_changed": 3,
+          "timestamp": "2026-05-31T01:32:59.361011"
+        }
+      ],
+      "logs": [
+        "ERROR - HTTP timeout calling payment-gateway/charge after 30s",
+        "WARN - Retry attempt 2/3 for payment-gateway/charge",
+        "ERROR - circuit-breaker opened for payment-gateway"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Payment gateway SDK upgrade to v3.2.1 changed the default timeout from 60s to 10s. Combined with new retry logic, rapid retries overwhelm the downstream causing cascade failure.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-dep_timeout-005",
+      "fault_type": "dep_timeout",
+      "service": "payment-service",
+      "language": "Node.js",
+      "region": "eu-west-1",
+      "severity": "critical",
+      "timestamp": "2026-05-30T23:32:59.361055",
+      "title": "Upstream timeout on payment-service",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-dep_timeout-5-0",
+          "title": "Upstream timeout on payment-service",
+          "description": "payment-service failing to reach payment-gateway",
+          "severity": "critical",
+          "service": "payment-service",
+          "timestamp": "2026-05-30T23:32:59.361055"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-dep_timeout-5-1",
+          "title": "External dependency degraded",
+          "description": "Payment gateway P99 latency > 10s",
+          "severity": "warning",
+          "service": "payment-service",
+          "timestamp": "2026-05-30T23:35:59.361055"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-09753932cb68",
+          "message": "chore: bump payment SDK version to 3.2.1",
+          "author": "dev5",
+          "files_changed": 1,
+          "timestamp": "2026-05-30T10:32:59.361055"
+        },
+        {
+          "sha": "sim-fb12b644cf53",
+          "message": "feat: add retry logic for payment calls",
+          "author": "dev4",
+          "files_changed": 3,
+          "timestamp": "2026-05-30T04:32:59.361055"
+        }
+      ],
+      "logs": [
+        "ERROR - HTTP timeout calling payment-gateway/charge after 30s",
+        "WARN - Retry attempt 2/3 for payment-gateway/charge",
+        "ERROR - circuit-breaker opened for payment-gateway"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Payment gateway SDK upgrade to v3.2.1 changed the default timeout from 60s to 10s. Combined with new retry logic, rapid retries overwhelm the downstream causing cascade failure.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-disk_full-000",
+      "fault_type": "disk_full",
+      "service": "api-gateway",
+      "language": "Rust",
+      "region": "us-east-1",
+      "severity": "warning",
+      "timestamp": "2026-05-31T13:32:59.361101",
+      "title": "Disk full on api-gateway host",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-disk_full-0-0",
+          "title": "Disk full on api-gateway host",
+          "description": "/data partition 100% full on api-gateway nodes",
+          "severity": "critical",
+          "service": "api-gateway",
+          "timestamp": "2026-05-31T13:32:59.361101"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-disk_full-0-1",
+          "title": "Write failures on api-gateway",
+          "description": "Application unable to write logs and data files",
+          "severity": "warning",
+          "service": "api-gateway",
+          "timestamp": "2026-05-31T13:35:59.361101"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-a4be7b94070a",
+          "message": "feat: add verbose debug logging to data pipeline",
+          "author": "dev2",
+          "files_changed": 4,
+          "timestamp": "2026-05-29T23:32:59.361101"
+        },
+        {
+          "sha": "sim-3f15478b77d1",
+          "message": "feat: enable request/response payload logging",
+          "author": "dev1",
+          "files_changed": 2,
+          "timestamp": "2026-05-30T06:32:59.361101"
+        }
+      ],
+      "logs": [
+        "ERROR - Disk quota exceeded: No space left on device",
+        "WARN - Log rotation failed: unable to archive /var/log/app/access.log",
+        "ERROR - write /data/db/journal: no space left on device"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Verbose debug logging and request payload logging enabled in api-gateway data pipeline. Log volume increased 50x, log rotation settings not updated, causing disk to fill within hours.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-disk_full-001",
+      "fault_type": "disk_full",
+      "service": "notification-service",
+      "language": "Go",
+      "region": "us-east-1",
+      "severity": "critical",
+      "timestamp": "2026-05-30T12:32:59.361146",
+      "title": "Disk full on notification-service host",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-disk_full-1-0",
+          "title": "Disk full on notification-service host",
+          "description": "/data partition 100% full on notification-service nodes",
+          "severity": "critical",
+          "service": "notification-service",
+          "timestamp": "2026-05-30T12:32:59.361146"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-disk_full-1-1",
+          "title": "Write failures on notification-service",
+          "description": "Application unable to write logs and data files",
+          "severity": "warning",
+          "service": "notification-service",
+          "timestamp": "2026-05-30T12:35:59.361146"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-e3ba6473f8fc",
+          "message": "feat: add verbose debug logging to data pipeline",
+          "author": "dev2",
+          "files_changed": 4,
+          "timestamp": "2026-05-30T07:32:59.361146"
+        },
+        {
+          "sha": "sim-fc72bf360e6c",
+          "message": "feat: enable request/response payload logging",
+          "author": "dev1",
+          "files_changed": 2,
+          "timestamp": "2026-05-28T21:32:59.361146"
+        }
+      ],
+      "logs": [
+        "ERROR - Disk quota exceeded: No space left on device",
+        "WARN - Log rotation failed: unable to archive /var/log/app/access.log",
+        "ERROR - write /data/db/journal: no space left on device"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Verbose debug logging and request payload logging enabled in notification-service data pipeline. Log volume increased 50x, log rotation settings not updated, causing disk to fill within hours.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-disk_full-002",
+      "fault_type": "disk_full",
+      "service": "search-service",
+      "language": "Go",
+      "region": "ap-southeast-1",
+      "severity": "critical",
+      "timestamp": "2026-06-01T14:32:59.361189",
+      "title": "Disk full on search-service host",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-disk_full-2-0",
+          "title": "Disk full on search-service host",
+          "description": "/data partition 100% full on search-service nodes",
+          "severity": "critical",
+          "service": "search-service",
+          "timestamp": "2026-06-01T14:32:59.361189"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-disk_full-2-1",
+          "title": "Write failures on search-service",
+          "description": "Application unable to write logs and data files",
+          "severity": "warning",
+          "service": "search-service",
+          "timestamp": "2026-06-01T14:35:59.361189"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-0935d35ce9c4",
+          "message": "feat: add verbose debug logging to data pipeline",
+          "author": "dev2",
+          "files_changed": 4,
+          "timestamp": "2026-05-30T22:32:59.361189"
+        },
+        {
+          "sha": "sim-29fe84c713fa",
+          "message": "feat: enable request/response payload logging",
+          "author": "dev1",
+          "files_changed": 2,
+          "timestamp": "2026-06-01T08:32:59.361189"
+        }
+      ],
+      "logs": [
+        "ERROR - Disk quota exceeded: No space left on device",
+        "WARN - Log rotation failed: unable to archive /var/log/app/access.log",
+        "ERROR - write /data/db/journal: no space left on device"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Verbose debug logging and request payload logging enabled in search-service data pipeline. Log volume increased 50x, log rotation settings not updated, causing disk to fill within hours.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-disk_full-003",
+      "fault_type": "disk_full",
+      "service": "search-service",
+      "language": "Rust",
+      "region": "eu-west-1",
+      "severity": "critical",
+      "timestamp": "2026-05-31T20:32:59.361233",
+      "title": "Disk full on search-service host",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-disk_full-3-0",
+          "title": "Disk full on search-service host",
+          "description": "/data partition 100% full on search-service nodes",
+          "severity": "critical",
+          "service": "search-service",
+          "timestamp": "2026-05-31T20:32:59.361233"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-disk_full-3-1",
+          "title": "Write failures on search-service",
+          "description": "Application unable to write logs and data files",
+          "severity": "warning",
+          "service": "search-service",
+          "timestamp": "2026-05-31T20:35:59.361233"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-2389c19db26c",
+          "message": "feat: add verbose debug logging to data pipeline",
+          "author": "dev2",
+          "files_changed": 4,
+          "timestamp": "2026-05-31T04:32:59.361233"
+        },
+        {
+          "sha": "sim-c223e8a9d7d7",
+          "message": "feat: enable request/response payload logging",
+          "author": "dev1",
+          "files_changed": 2,
+          "timestamp": "2026-05-31T03:32:59.361233"
+        }
+      ],
+      "logs": [
+        "ERROR - Disk quota exceeded: No space left on device",
+        "WARN - Log rotation failed: unable to archive /var/log/app/access.log",
+        "ERROR - write /data/db/journal: no space left on device"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Verbose debug logging and request payload logging enabled in search-service data pipeline. Log volume increased 50x, log rotation settings not updated, causing disk to fill within hours.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-disk_full-004",
+      "fault_type": "disk_full",
+      "service": "user-service",
+      "language": "Python",
+      "region": "ap-southeast-1",
+      "severity": "warning",
+      "timestamp": "2026-05-31T13:32:59.361274",
+      "title": "Disk full on user-service host",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-disk_full-4-0",
+          "title": "Disk full on user-service host",
+          "description": "/data partition 100% full on user-service nodes",
+          "severity": "critical",
+          "service": "user-service",
+          "timestamp": "2026-05-31T13:32:59.361274"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-disk_full-4-1",
+          "title": "Write failures on user-service",
+          "description": "Application unable to write logs and data files",
+          "severity": "warning",
+          "service": "user-service",
+          "timestamp": "2026-05-31T13:35:59.361274"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-7c6e4b7be006",
+          "message": "feat: add verbose debug logging to data pipeline",
+          "author": "dev2",
+          "files_changed": 4,
+          "timestamp": "2026-05-30T07:32:59.361274"
+        },
+        {
+          "sha": "sim-0ff1427a838e",
+          "message": "feat: enable request/response payload logging",
+          "author": "dev1",
+          "files_changed": 2,
+          "timestamp": "2026-05-29T21:32:59.361274"
+        }
+      ],
+      "logs": [
+        "ERROR - Disk quota exceeded: No space left on device",
+        "WARN - Log rotation failed: unable to archive /var/log/app/access.log",
+        "ERROR - write /data/db/journal: no space left on device"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Verbose debug logging and request payload logging enabled in user-service data pipeline. Log volume increased 50x, log rotation settings not updated, causing disk to fill within hours.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-disk_full-005",
+      "fault_type": "disk_full",
+      "service": "api-gateway",
+      "language": "Java",
+      "region": "us-west-2",
+      "severity": "critical",
+      "timestamp": "2026-05-30T13:32:59.361316",
+      "title": "Disk full on api-gateway host",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-disk_full-5-0",
+          "title": "Disk full on api-gateway host",
+          "description": "/data partition 100% full on api-gateway nodes",
+          "severity": "critical",
+          "service": "api-gateway",
+          "timestamp": "2026-05-30T13:32:59.361316"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-disk_full-5-1",
+          "title": "Write failures on api-gateway",
+          "description": "Application unable to write logs and data files",
+          "severity": "warning",
+          "service": "api-gateway",
+          "timestamp": "2026-05-30T13:35:59.361316"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-a8b76b3a686e",
+          "message": "feat: add verbose debug logging to data pipeline",
+          "author": "dev2",
+          "files_changed": 4,
+          "timestamp": "2026-05-29T14:32:59.361316"
+        },
+        {
+          "sha": "sim-519b64c7b2b7",
+          "message": "feat: enable request/response payload logging",
+          "author": "dev1",
+          "files_changed": 2,
+          "timestamp": "2026-05-30T08:32:59.361316"
+        }
+      ],
+      "logs": [
+        "ERROR - Disk quota exceeded: No space left on device",
+        "WARN - Log rotation failed: unable to archive /var/log/app/access.log",
+        "ERROR - write /data/db/journal: no space left on device"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Verbose debug logging and request payload logging enabled in api-gateway data pipeline. Log volume increased 50x, log rotation settings not updated, causing disk to fill within hours.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-network_partition-000",
+      "fault_type": "network_partition",
+      "service": "payment-service",
+      "language": "Python",
+      "region": "us-west-2",
+      "severity": "warning",
+      "timestamp": "2026-05-30T21:32:59.361358",
+      "title": "Service unreachable",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-network_partition-0-0",
+          "title": "Service unreachable",
+          "description": "payment-service cannot reach database cluster",
+          "severity": "critical",
+          "service": "payment-service",
+          "timestamp": "2026-05-30T21:32:59.361358"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-network_partition-0-1",
+          "title": "Replica lag spike",
+          "description": "DB replication lag > 300s across AZs",
+          "severity": "warning",
+          "service": "payment-service",
+          "timestamp": "2026-05-30T21:35:59.361358"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-7fee50b5645b",
+          "message": "ops: update security group rules for database access",
+          "author": "devops",
+          "files_changed": 2,
+          "timestamp": "2026-05-29T02:32:59.361358"
+        }
+      ],
+      "logs": [
+        "ERROR - dial tcp 10.0.3.12:5432: i/o timeout",
+        "WARN - connection to database primary lost, attempting failover",
+        "ERROR - all database replicas unreachable from current AZ"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Network partition between payment-service AZ and database cluster. Recent security group update inadvertently removed the ingress rule for the application subnet on port 5432.",
+      "expected_confidence": 0.7
+    },
+    {
+      "id": "sim-network_partition-001",
+      "fault_type": "network_partition",
+      "service": "payment-service",
+      "language": "Java",
+      "region": "us-west-2",
+      "severity": "warning",
+      "timestamp": "2026-05-31T20:32:59.361394",
+      "title": "Service unreachable",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-network_partition-1-0",
+          "title": "Service unreachable",
+          "description": "payment-service cannot reach database cluster",
+          "severity": "critical",
+          "service": "payment-service",
+          "timestamp": "2026-05-31T20:32:59.361394"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-network_partition-1-1",
+          "title": "Replica lag spike",
+          "description": "DB replication lag > 300s across AZs",
+          "severity": "warning",
+          "service": "payment-service",
+          "timestamp": "2026-05-31T20:35:59.361394"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-eccc1af3a970",
+          "message": "ops: update security group rules for database access",
+          "author": "devops",
+          "files_changed": 2,
+          "timestamp": "2026-05-29T20:32:59.361394"
+        }
+      ],
+      "logs": [
+        "ERROR - dial tcp 10.0.3.12:5432: i/o timeout",
+        "WARN - connection to database primary lost, attempting failover",
+        "ERROR - all database replicas unreachable from current AZ"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Network partition between payment-service AZ and database cluster. Recent security group update inadvertently removed the ingress rule for the application subnet on port 5432.",
+      "expected_confidence": 0.7
+    },
+    {
+      "id": "sim-network_partition-002",
+      "fault_type": "network_partition",
+      "service": "user-service",
+      "language": "Python",
+      "region": "eu-west-1",
+      "severity": "warning",
+      "timestamp": "2026-06-01T03:32:59.361427",
+      "title": "Service unreachable",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-network_partition-2-0",
+          "title": "Service unreachable",
+          "description": "user-service cannot reach database cluster",
+          "severity": "critical",
+          "service": "user-service",
+          "timestamp": "2026-06-01T03:32:59.361427"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-network_partition-2-1",
+          "title": "Replica lag spike",
+          "description": "DB replication lag > 300s across AZs",
+          "severity": "warning",
+          "service": "user-service",
+          "timestamp": "2026-06-01T03:35:59.361427"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-b1b137795437",
+          "message": "ops: update security group rules for database access",
+          "author": "devops",
+          "files_changed": 2,
+          "timestamp": "2026-05-30T07:32:59.361427"
+        }
+      ],
+      "logs": [
+        "ERROR - dial tcp 10.0.3.12:5432: i/o timeout",
+        "WARN - connection to database primary lost, attempting failover",
+        "ERROR - all database replicas unreachable from current AZ"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Network partition between user-service AZ and database cluster. Recent security group update inadvertently removed the ingress rule for the application subnet on port 5432.",
+      "expected_confidence": 0.7
+    },
+    {
+      "id": "sim-network_partition-003",
+      "fault_type": "network_partition",
+      "service": "payment-service",
+      "language": "Rust",
+      "region": "ap-southeast-1",
+      "severity": "critical",
+      "timestamp": "2026-05-31T21:32:59.361463",
+      "title": "Service unreachable",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-network_partition-3-0",
+          "title": "Service unreachable",
+          "description": "payment-service cannot reach database cluster",
+          "severity": "critical",
+          "service": "payment-service",
+          "timestamp": "2026-05-31T21:32:59.361463"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-network_partition-3-1",
+          "title": "Replica lag spike",
+          "description": "DB replication lag > 300s across AZs",
+          "severity": "warning",
+          "service": "payment-service",
+          "timestamp": "2026-05-31T21:35:59.361463"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-614a0c7d35c0",
+          "message": "ops: update security group rules for database access",
+          "author": "devops",
+          "files_changed": 2,
+          "timestamp": "2026-05-30T04:32:59.361463"
+        }
+      ],
+      "logs": [
+        "ERROR - dial tcp 10.0.3.12:5432: i/o timeout",
+        "WARN - connection to database primary lost, attempting failover",
+        "ERROR - all database replicas unreachable from current AZ"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Network partition between payment-service AZ and database cluster. Recent security group update inadvertently removed the ingress rule for the application subnet on port 5432.",
+      "expected_confidence": 0.7
+    },
+    {
+      "id": "sim-network_partition-004",
+      "fault_type": "network_partition",
+      "service": "payment-service",
+      "language": "Java",
+      "region": "us-east-1",
+      "severity": "warning",
+      "timestamp": "2026-05-31T11:32:59.361505",
+      "title": "Service unreachable",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-network_partition-4-0",
+          "title": "Service unreachable",
+          "description": "payment-service cannot reach database cluster",
+          "severity": "critical",
+          "service": "payment-service",
+          "timestamp": "2026-05-31T11:32:59.361505"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-network_partition-4-1",
+          "title": "Replica lag spike",
+          "description": "DB replication lag > 300s across AZs",
+          "severity": "warning",
+          "service": "payment-service",
+          "timestamp": "2026-05-31T11:35:59.361505"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-86c962136a3b",
+          "message": "ops: update security group rules for database access",
+          "author": "devops",
+          "files_changed": 2,
+          "timestamp": "2026-05-31T00:32:59.361505"
+        }
+      ],
+      "logs": [
+        "ERROR - dial tcp 10.0.3.12:5432: i/o timeout",
+        "WARN - connection to database primary lost, attempting failover",
+        "ERROR - all database replicas unreachable from current AZ"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Network partition between payment-service AZ and database cluster. Recent security group update inadvertently removed the ingress rule for the application subnet on port 5432.",
+      "expected_confidence": 0.7
+    },
+    {
+      "id": "sim-network_partition-005",
+      "fault_type": "network_partition",
+      "service": "order-service",
+      "language": "Rust",
+      "region": "ap-southeast-1",
+      "severity": "warning",
+      "timestamp": "2026-05-30T06:32:59.361538",
+      "title": "Service unreachable",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-network_partition-5-0",
+          "title": "Service unreachable",
+          "description": "order-service cannot reach database cluster",
+          "severity": "critical",
+          "service": "order-service",
+          "timestamp": "2026-05-30T06:32:59.361538"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-network_partition-5-1",
+          "title": "Replica lag spike",
+          "description": "DB replication lag > 300s across AZs",
+          "severity": "warning",
+          "service": "order-service",
+          "timestamp": "2026-05-30T06:35:59.361538"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-2f73ae83eacc",
+          "message": "ops: update security group rules for database access",
+          "author": "devops",
+          "files_changed": 2,
+          "timestamp": "2026-05-30T01:32:59.361538"
+        }
+      ],
+      "logs": [
+        "ERROR - dial tcp 10.0.3.12:5432: i/o timeout",
+        "WARN - connection to database primary lost, attempting failover",
+        "ERROR - all database replicas unreachable from current AZ"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Network partition between order-service AZ and database cluster. Recent security group update inadvertently removed the ingress rule for the application subnet on port 5432.",
+      "expected_confidence": 0.7
+    },
+    {
+      "id": "sim-cert_expiry-000",
+      "fault_type": "cert_expiry",
+      "service": "user-service",
+      "language": "Rust",
+      "region": "us-east-1",
+      "severity": "critical",
+      "timestamp": "2026-05-31T06:32:59.361572",
+      "title": "TLS handshake failures on user-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-cert_expiry-0-0",
+          "title": "TLS handshake failures on user-service",
+          "description": "Clients reporting SSL errors connecting to user-service",
+          "severity": "critical",
+          "service": "user-service",
+          "timestamp": "2026-05-31T06:32:59.361572"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-cert_expiry-0-1",
+          "title": "Certificate warning",
+          "description": "TLS certificate for api.example.com expires in 3 days",
+          "severity": "warning",
+          "service": "user-service",
+          "timestamp": "2026-05-31T06:35:59.361572"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-11fb4472a6c2",
+          "message": "ops: update load balancer TLS settings",
+          "author": "devops",
+          "files_changed": 1,
+          "timestamp": "2026-05-30T21:32:59.361572"
+        }
+      ],
+      "logs": [
+        "ERROR - SSL_ERROR_EXPIRED_CERT: certificate expired",
+        "ERROR - tls: first record does not look like a TLS handshake",
+        "WARN - acme renewal failed: Let's Encrypt endpoint unreachable"
+      ],
+      "incident_count": 2,
+      "ground_truth": "TLS certificate for user-service has expired. Auto-renewal failed because Let's Encrypt ACME endpoint was blocked by updated firewall rules. Load balancer TLS settings update did not include cert rotation.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-cert_expiry-001",
+      "fault_type": "cert_expiry",
+      "service": "payment-service",
+      "language": "Python",
+      "region": "us-east-1",
+      "severity": "critical",
+      "timestamp": "2026-05-31T08:32:59.361608",
+      "title": "TLS handshake failures on payment-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-cert_expiry-1-0",
+          "title": "TLS handshake failures on payment-service",
+          "description": "Clients reporting SSL errors connecting to payment-service",
+          "severity": "critical",
+          "service": "payment-service",
+          "timestamp": "2026-05-31T08:32:59.361608"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-cert_expiry-1-1",
+          "title": "Certificate warning",
+          "description": "TLS certificate for api.example.com expires in 3 days",
+          "severity": "warning",
+          "service": "payment-service",
+          "timestamp": "2026-05-31T08:35:59.361608"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-cd8829827662",
+          "message": "ops: update load balancer TLS settings",
+          "author": "devops",
+          "files_changed": 1,
+          "timestamp": "2026-05-29T13:32:59.361608"
+        }
+      ],
+      "logs": [
+        "ERROR - SSL_ERROR_EXPIRED_CERT: certificate expired",
+        "ERROR - tls: first record does not look like a TLS handshake",
+        "WARN - acme renewal failed: Let's Encrypt endpoint unreachable"
+      ],
+      "incident_count": 2,
+      "ground_truth": "TLS certificate for payment-service has expired. Auto-renewal failed because Let's Encrypt ACME endpoint was blocked by updated firewall rules. Load balancer TLS settings update did not include cert rotation.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-cert_expiry-002",
+      "fault_type": "cert_expiry",
+      "service": "payment-service",
+      "language": "Rust",
+      "region": "ap-southeast-1",
+      "severity": "critical",
+      "timestamp": "2026-06-01T10:32:59.361642",
+      "title": "TLS handshake failures on payment-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-cert_expiry-2-0",
+          "title": "TLS handshake failures on payment-service",
+          "description": "Clients reporting SSL errors connecting to payment-service",
+          "severity": "critical",
+          "service": "payment-service",
+          "timestamp": "2026-06-01T10:32:59.361642"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-cert_expiry-2-1",
+          "title": "Certificate warning",
+          "description": "TLS certificate for api.example.com expires in 3 days",
+          "severity": "warning",
+          "service": "payment-service",
+          "timestamp": "2026-06-01T10:35:59.361642"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-300a59cab694",
+          "message": "ops: update load balancer TLS settings",
+          "author": "devops",
+          "files_changed": 1,
+          "timestamp": "2026-05-31T22:32:59.361642"
+        }
+      ],
+      "logs": [
+        "ERROR - SSL_ERROR_EXPIRED_CERT: certificate expired",
+        "ERROR - tls: first record does not look like a TLS handshake",
+        "WARN - acme renewal failed: Let's Encrypt endpoint unreachable"
+      ],
+      "incident_count": 2,
+      "ground_truth": "TLS certificate for payment-service has expired. Auto-renewal failed because Let's Encrypt ACME endpoint was blocked by updated firewall rules. Load balancer TLS settings update did not include cert rotation.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-cert_expiry-003",
+      "fault_type": "cert_expiry",
+      "service": "api-gateway",
+      "language": "Go",
+      "region": "eu-west-1",
+      "severity": "warning",
+      "timestamp": "2026-05-31T01:32:59.361676",
+      "title": "TLS handshake failures on api-gateway",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-cert_expiry-3-0",
+          "title": "TLS handshake failures on api-gateway",
+          "description": "Clients reporting SSL errors connecting to api-gateway",
+          "severity": "critical",
+          "service": "api-gateway",
+          "timestamp": "2026-05-31T01:32:59.361676"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-cert_expiry-3-1",
+          "title": "Certificate warning",
+          "description": "TLS certificate for api.example.com expires in 3 days",
+          "severity": "warning",
+          "service": "api-gateway",
+          "timestamp": "2026-05-31T01:35:59.361676"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-3d0b4e11f125",
+          "message": "ops: update load balancer TLS settings",
+          "author": "devops",
+          "files_changed": 1,
+          "timestamp": "2026-05-30T14:32:59.361676"
+        }
+      ],
+      "logs": [
+        "ERROR - SSL_ERROR_EXPIRED_CERT: certificate expired",
+        "ERROR - tls: first record does not look like a TLS handshake",
+        "WARN - acme renewal failed: Let's Encrypt endpoint unreachable"
+      ],
+      "incident_count": 2,
+      "ground_truth": "TLS certificate for api-gateway has expired. Auto-renewal failed because Let's Encrypt ACME endpoint was blocked by updated firewall rules. Load balancer TLS settings update did not include cert rotation.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-cert_expiry-004",
+      "fault_type": "cert_expiry",
+      "service": "api-gateway",
+      "language": "Node.js",
+      "region": "us-east-1",
+      "severity": "critical",
+      "timestamp": "2026-05-30T17:32:59.361711",
+      "title": "TLS handshake failures on api-gateway",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-cert_expiry-4-0",
+          "title": "TLS handshake failures on api-gateway",
+          "description": "Clients reporting SSL errors connecting to api-gateway",
+          "severity": "critical",
+          "service": "api-gateway",
+          "timestamp": "2026-05-30T17:32:59.361711"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-cert_expiry-4-1",
+          "title": "Certificate warning",
+          "description": "TLS certificate for api.example.com expires in 3 days",
+          "severity": "warning",
+          "service": "api-gateway",
+          "timestamp": "2026-05-30T17:35:59.361711"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-6003f3ff5ac0",
+          "message": "ops: update load balancer TLS settings",
+          "author": "devops",
+          "files_changed": 1,
+          "timestamp": "2026-05-29T11:32:59.361711"
+        }
+      ],
+      "logs": [
+        "ERROR - SSL_ERROR_EXPIRED_CERT: certificate expired",
+        "ERROR - tls: first record does not look like a TLS handshake",
+        "WARN - acme renewal failed: Let's Encrypt endpoint unreachable"
+      ],
+      "incident_count": 2,
+      "ground_truth": "TLS certificate for api-gateway has expired. Auto-renewal failed because Let's Encrypt ACME endpoint was blocked by updated firewall rules. Load balancer TLS settings update did not include cert rotation.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-cert_expiry-005",
+      "fault_type": "cert_expiry",
+      "service": "payment-service",
+      "language": "Go",
+      "region": "us-west-2",
+      "severity": "critical",
+      "timestamp": "2026-06-02T02:32:59.361744",
+      "title": "TLS handshake failures on payment-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-cert_expiry-5-0",
+          "title": "TLS handshake failures on payment-service",
+          "description": "Clients reporting SSL errors connecting to payment-service",
+          "severity": "critical",
+          "service": "payment-service",
+          "timestamp": "2026-06-02T02:32:59.361744"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-cert_expiry-5-1",
+          "title": "Certificate warning",
+          "description": "TLS certificate for api.example.com expires in 3 days",
+          "severity": "warning",
+          "service": "payment-service",
+          "timestamp": "2026-06-02T02:35:59.361744"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-e361faf7e271",
+          "message": "ops: update load balancer TLS settings",
+          "author": "devops",
+          "files_changed": 1,
+          "timestamp": "2026-06-01T04:32:59.361744"
+        }
+      ],
+      "logs": [
+        "ERROR - SSL_ERROR_EXPIRED_CERT: certificate expired",
+        "ERROR - tls: first record does not look like a TLS handshake",
+        "WARN - acme renewal failed: Let's Encrypt endpoint unreachable"
+      ],
+      "incident_count": 2,
+      "ground_truth": "TLS certificate for payment-service has expired. Auto-renewal failed because Let's Encrypt ACME endpoint was blocked by updated firewall rules. Load balancer TLS settings update did not include cert rotation.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-config_error-000",
+      "fault_type": "config_error",
+      "service": "api-gateway",
+      "language": "Python",
+      "region": "eu-west-1",
+      "severity": "critical",
+      "timestamp": "2026-05-30T12:32:59.361777",
+      "title": "Deployment failure on api-gateway",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-config_error-0-0",
+          "title": "Deployment failure on api-gateway",
+          "description": "New version of api-gateway failing health checks",
+          "severity": "critical",
+          "service": "api-gateway",
+          "timestamp": "2026-05-30T12:32:59.361777"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-config_error-0-1",
+          "title": "Config validation error",
+          "description": "Invalid configuration in latest release",
+          "severity": "warning",
+          "service": "api-gateway",
+          "timestamp": "2026-05-30T12:35:59.361777"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-1dd7d00e926e",
+          "message": "feat: add feature flags system",
+          "author": "dev1",
+          "files_changed": 10,
+          "timestamp": "2026-05-30T10:32:59.361777"
+        },
+        {
+          "sha": "sim-4b892b133741",
+          "message": "fix: correct database URL in config template",
+          "author": "dev2",
+          "files_changed": 1,
+          "timestamp": "2026-05-30T04:32:59.361777"
+        }
+      ],
+      "logs": [
+        "ERROR - Failed to parse config.yaml: unknown field 'feature_toggles'",
+        "ERROR - Application startup aborted due to configuration error",
+        "WARN - Config validation: environment 'production' not found in allowed values"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Configuration parsing error in api-gateway: feature flags config schema mismatch. New 'feature_toggles' field was added to config but the JSON schema validation was not updated to include it, causing startup rejection.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-config_error-001",
+      "fault_type": "config_error",
+      "service": "user-service",
+      "language": "Rust",
+      "region": "eu-west-1",
+      "severity": "critical",
+      "timestamp": "2026-06-02T01:32:59.361822",
+      "title": "Deployment failure on user-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-config_error-1-0",
+          "title": "Deployment failure on user-service",
+          "description": "New version of user-service failing health checks",
+          "severity": "critical",
+          "service": "user-service",
+          "timestamp": "2026-06-02T01:32:59.361822"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-config_error-1-1",
+          "title": "Config validation error",
+          "description": "Invalid configuration in latest release",
+          "severity": "warning",
+          "service": "user-service",
+          "timestamp": "2026-06-02T01:35:59.361822"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-7d59694763fb",
+          "message": "feat: add feature flags system",
+          "author": "dev1",
+          "files_changed": 10,
+          "timestamp": "2026-06-01T02:32:59.361822"
+        },
+        {
+          "sha": "sim-4d8dde228b69",
+          "message": "fix: correct database URL in config template",
+          "author": "dev2",
+          "files_changed": 1,
+          "timestamp": "2026-05-31T02:32:59.361822"
+        }
+      ],
+      "logs": [
+        "ERROR - Failed to parse config.yaml: unknown field 'feature_toggles'",
+        "ERROR - Application startup aborted due to configuration error",
+        "WARN - Config validation: environment 'production' not found in allowed values"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Configuration parsing error in user-service: feature flags config schema mismatch. New 'feature_toggles' field was added to config but the JSON schema validation was not updated to include it, causing startup rejection.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-config_error-002",
+      "fault_type": "config_error",
+      "service": "order-service",
+      "language": "Rust",
+      "region": "us-east-1",
+      "severity": "critical",
+      "timestamp": "2026-05-31T04:32:59.361867",
+      "title": "Deployment failure on order-service",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-config_error-2-0",
+          "title": "Deployment failure on order-service",
+          "description": "New version of order-service failing health checks",
+          "severity": "critical",
+          "service": "order-service",
+          "timestamp": "2026-05-31T04:32:59.361867"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-config_error-2-1",
+          "title": "Config validation error",
+          "description": "Invalid configuration in latest release",
+          "severity": "warning",
+          "service": "order-service",
+          "timestamp": "2026-05-31T04:35:59.361867"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-6f55e8f14d04",
+          "message": "feat: add feature flags system",
+          "author": "dev1",
+          "files_changed": 10,
+          "timestamp": "2026-05-31T01:32:59.361867"
+        },
+        {
+          "sha": "sim-ffbfecb58bee",
+          "message": "fix: correct database URL in config template",
+          "author": "dev2",
+          "files_changed": 1,
+          "timestamp": "2026-05-29T06:32:59.361867"
+        }
+      ],
+      "logs": [
+        "ERROR - Failed to parse config.yaml: unknown field 'feature_toggles'",
+        "ERROR - Application startup aborted due to configuration error",
+        "WARN - Config validation: environment 'production' not found in allowed values"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Configuration parsing error in order-service: feature flags config schema mismatch. New 'feature_toggles' field was added to config but the JSON schema validation was not updated to include it, causing startup rejection.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-config_error-003",
+      "fault_type": "config_error",
+      "service": "api-gateway",
+      "language": "Rust",
+      "region": "us-west-2",
+      "severity": "warning",
+      "timestamp": "2026-05-31T07:32:59.361920",
+      "title": "Deployment failure on api-gateway",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-config_error-3-0",
+          "title": "Deployment failure on api-gateway",
+          "description": "New version of api-gateway failing health checks",
+          "severity": "critical",
+          "service": "api-gateway",
+          "timestamp": "2026-05-31T07:32:59.361920"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-config_error-3-1",
+          "title": "Config validation error",
+          "description": "Invalid configuration in latest release",
+          "severity": "warning",
+          "service": "api-gateway",
+          "timestamp": "2026-05-31T07:35:59.361920"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-cbca8f8d081e",
+          "message": "feat: add feature flags system",
+          "author": "dev1",
+          "files_changed": 10,
+          "timestamp": "2026-05-29T12:32:59.361920"
+        },
+        {
+          "sha": "sim-150c77b4be86",
+          "message": "fix: correct database URL in config template",
+          "author": "dev2",
+          "files_changed": 1,
+          "timestamp": "2026-05-30T09:32:59.361920"
+        }
+      ],
+      "logs": [
+        "ERROR - Failed to parse config.yaml: unknown field 'feature_toggles'",
+        "ERROR - Application startup aborted due to configuration error",
+        "WARN - Config validation: environment 'production' not found in allowed values"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Configuration parsing error in api-gateway: feature flags config schema mismatch. New 'feature_toggles' field was added to config but the JSON schema validation was not updated to include it, causing startup rejection.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-config_error-004",
+      "fault_type": "config_error",
+      "service": "payment-service",
+      "language": "Java",
+      "region": "eu-west-1",
+      "severity": "warning",
+      "timestamp": "2026-05-30T13:32:59.361960",
+      "title": "Deployment failure on payment-service",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-config_error-4-0",
+          "title": "Deployment failure on payment-service",
+          "description": "New version of payment-service failing health checks",
+          "severity": "critical",
+          "service": "payment-service",
+          "timestamp": "2026-05-30T13:32:59.361960"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-config_error-4-1",
+          "title": "Config validation error",
+          "description": "Invalid configuration in latest release",
+          "severity": "warning",
+          "service": "payment-service",
+          "timestamp": "2026-05-30T13:35:59.361960"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-4b1844f49437",
+          "message": "feat: add feature flags system",
+          "author": "dev1",
+          "files_changed": 10,
+          "timestamp": "2026-05-29T16:32:59.361960"
+        },
+        {
+          "sha": "sim-9cc9541dcc9d",
+          "message": "fix: correct database URL in config template",
+          "author": "dev2",
+          "files_changed": 1,
+          "timestamp": "2026-05-29T11:32:59.361960"
+        }
+      ],
+      "logs": [
+        "ERROR - Failed to parse config.yaml: unknown field 'feature_toggles'",
+        "ERROR - Application startup aborted due to configuration error",
+        "WARN - Config validation: environment 'production' not found in allowed values"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Configuration parsing error in payment-service: feature flags config schema mismatch. New 'feature_toggles' field was added to config but the JSON schema validation was not updated to include it, causing startup rejection.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-config_error-005",
+      "fault_type": "config_error",
+      "service": "payment-service",
+      "language": "Rust",
+      "region": "us-west-2",
+      "severity": "critical",
+      "timestamp": "2026-06-01T05:32:59.362000",
+      "title": "Deployment failure on payment-service",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-config_error-5-0",
+          "title": "Deployment failure on payment-service",
+          "description": "New version of payment-service failing health checks",
+          "severity": "critical",
+          "service": "payment-service",
+          "timestamp": "2026-06-01T05:32:59.362000"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-config_error-5-1",
+          "title": "Config validation error",
+          "description": "Invalid configuration in latest release",
+          "severity": "warning",
+          "service": "payment-service",
+          "timestamp": "2026-06-01T05:35:59.362000"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-cab309bf6912",
+          "message": "feat: add feature flags system",
+          "author": "dev1",
+          "files_changed": 10,
+          "timestamp": "2026-05-30T09:32:59.362000"
+        },
+        {
+          "sha": "sim-968d7594e1b6",
+          "message": "fix: correct database URL in config template",
+          "author": "dev2",
+          "files_changed": 1,
+          "timestamp": "2026-05-30T05:32:59.362000"
+        }
+      ],
+      "logs": [
+        "ERROR - Failed to parse config.yaml: unknown field 'feature_toggles'",
+        "ERROR - Application startup aborted due to configuration error",
+        "WARN - Config validation: environment 'production' not found in allowed values"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Configuration parsing error in payment-service: feature flags config schema mismatch. New 'feature_toggles' field was added to config but the JSON schema validation was not updated to include it, causing startup rejection.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-deploy_regression-000",
+      "fault_type": "deploy_regression",
+      "service": "notification-service",
+      "language": "Rust",
+      "region": "eu-west-1",
+      "severity": "warning",
+      "timestamp": "2026-05-31T02:32:59.362040",
+      "title": "Error rate spike after deployment",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-deploy_regression-0-0",
+          "title": "Error rate spike after deployment",
+          "description": "notification-service error rate increased 10x after latest deploy",
+          "severity": "critical",
+          "service": "notification-service",
+          "timestamp": "2026-05-31T02:32:59.362040"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-deploy_regression-0-1",
+          "title": "Latency regression on notification-service",
+          "description": "P99 latency increased from 200ms to 5s",
+          "severity": "critical",
+          "service": "notification-service",
+          "timestamp": "2026-05-31T02:35:59.362040"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-389d4f717327",
+          "message": "refactor: migrate authentication to OAuth 2.0",
+          "author": "dev1",
+          "files_changed": 15,
+          "timestamp": "2026-05-30T07:32:59.362040"
+        },
+        {
+          "sha": "sim-b1ce0bb65e0c",
+          "message": "fix: update auth token validation logic",
+          "author": "dev1",
+          "files_changed": 3,
+          "timestamp": "2026-05-30T12:32:59.362040"
+        },
+        {
+          "sha": "sim-3e9843e3428a",
+          "message": "chore: bump golang version to 1.22",
+          "author": "dev5",
+          "files_changed": 2,
+          "timestamp": "2026-05-29T22:32:59.362040"
+        }
+      ],
+      "logs": [
+        "ERROR - token validation failed: unexpected signature algorithm",
+        "WARN - JWT decode error: crypto/rsa: verification error",
+        "ERROR - authentication middleware rejection rate: 45%"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Deploy regression in notification-service: OAuth 2.0 migration changed token signing algorithm from RS256 to RS384 but validation logic still expects RS256. Combined with Go 1.22 crypto behavior change, all tokens are rejected.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-deploy_regression-001",
+      "fault_type": "deploy_regression",
+      "service": "notification-service",
+      "language": "Python",
+      "region": "ap-southeast-1",
+      "severity": "critical",
+      "timestamp": "2026-05-30T21:32:59.362100",
+      "title": "Error rate spike after deployment",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-deploy_regression-1-0",
+          "title": "Error rate spike after deployment",
+          "description": "notification-service error rate increased 10x after latest deploy",
+          "severity": "critical",
+          "service": "notification-service",
+          "timestamp": "2026-05-30T21:32:59.362100"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-deploy_regression-1-1",
+          "title": "Latency regression on notification-service",
+          "description": "P99 latency increased from 200ms to 5s",
+          "severity": "critical",
+          "service": "notification-service",
+          "timestamp": "2026-05-30T21:35:59.362100"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-1e5463557868",
+          "message": "refactor: migrate authentication to OAuth 2.0",
+          "author": "dev1",
+          "files_changed": 15,
+          "timestamp": "2026-05-29T12:32:59.362100"
+        },
+        {
+          "sha": "sim-e58338add77d",
+          "message": "fix: update auth token validation logic",
+          "author": "dev1",
+          "files_changed": 3,
+          "timestamp": "2026-05-29T14:32:59.362100"
+        },
+        {
+          "sha": "sim-3da9f0758e31",
+          "message": "chore: bump golang version to 1.22",
+          "author": "dev5",
+          "files_changed": 2,
+          "timestamp": "2026-05-28T21:32:59.362100"
+        }
+      ],
+      "logs": [
+        "ERROR - token validation failed: unexpected signature algorithm",
+        "WARN - JWT decode error: crypto/rsa: verification error",
+        "ERROR - authentication middleware rejection rate: 45%"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Deploy regression in notification-service: OAuth 2.0 migration changed token signing algorithm from RS256 to RS384 but validation logic still expects RS256. Combined with Go 1.22 crypto behavior change, all tokens are rejected.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-deploy_regression-002",
+      "fault_type": "deploy_regression",
+      "service": "search-service",
+      "language": "Java",
+      "region": "eu-west-1",
+      "severity": "critical",
+      "timestamp": "2026-05-30T12:32:59.362150",
+      "title": "Error rate spike after deployment",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-deploy_regression-2-0",
+          "title": "Error rate spike after deployment",
+          "description": "search-service error rate increased 10x after latest deploy",
+          "severity": "critical",
+          "service": "search-service",
+          "timestamp": "2026-05-30T12:32:59.362150"
+        },
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-deploy_regression-2-1",
+          "title": "Latency regression on search-service",
+          "description": "P99 latency increased from 200ms to 5s",
+          "severity": "critical",
+          "service": "search-service",
+          "timestamp": "2026-05-30T12:35:59.362150"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-6b59cfc34c36",
+          "message": "refactor: migrate authentication to OAuth 2.0",
+          "author": "dev1",
+          "files_changed": 15,
+          "timestamp": "2026-05-29T20:32:59.362150"
+        },
+        {
+          "sha": "sim-9d066634b92b",
+          "message": "fix: update auth token validation logic",
+          "author": "dev1",
+          "files_changed": 3,
+          "timestamp": "2026-05-28T16:32:59.362150"
+        },
+        {
+          "sha": "sim-94e2990dd6e9",
+          "message": "chore: bump golang version to 1.22",
+          "author": "dev5",
+          "files_changed": 2,
+          "timestamp": "2026-05-29T16:32:59.362150"
+        }
+      ],
+      "logs": [
+        "ERROR - token validation failed: unexpected signature algorithm",
+        "WARN - JWT decode error: crypto/rsa: verification error",
+        "ERROR - authentication middleware rejection rate: 45%"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Deploy regression in search-service: OAuth 2.0 migration changed token signing algorithm from RS256 to RS384 but validation logic still expects RS256. Combined with Go 1.22 crypto behavior change, all tokens are rejected.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-deploy_regression-003",
+      "fault_type": "deploy_regression",
+      "service": "user-service",
+      "language": "Go",
+      "region": "us-east-1",
+      "severity": "critical",
+      "timestamp": "2026-06-02T00:32:59.362199",
+      "title": "Error rate spike after deployment",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-deploy_regression-3-0",
+          "title": "Error rate spike after deployment",
+          "description": "user-service error rate increased 10x after latest deploy",
+          "severity": "critical",
+          "service": "user-service",
+          "timestamp": "2026-06-02T00:32:59.362199"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-deploy_regression-3-1",
+          "title": "Latency regression on user-service",
+          "description": "P99 latency increased from 200ms to 5s",
+          "severity": "critical",
+          "service": "user-service",
+          "timestamp": "2026-06-02T00:35:59.362199"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-30a8c7a1acd6",
+          "message": "refactor: migrate authentication to OAuth 2.0",
+          "author": "dev1",
+          "files_changed": 15,
+          "timestamp": "2026-05-31T08:32:59.362199"
+        },
+        {
+          "sha": "sim-9eee16796de8",
+          "message": "fix: update auth token validation logic",
+          "author": "dev1",
+          "files_changed": 3,
+          "timestamp": "2026-06-01T19:32:59.362199"
+        },
+        {
+          "sha": "sim-d6cae0225ec5",
+          "message": "chore: bump golang version to 1.22",
+          "author": "dev5",
+          "files_changed": 2,
+          "timestamp": "2026-05-31T18:32:59.362199"
+        }
+      ],
+      "logs": [
+        "ERROR - token validation failed: unexpected signature algorithm",
+        "WARN - JWT decode error: crypto/rsa: verification error",
+        "ERROR - authentication middleware rejection rate: 45%"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Deploy regression in user-service: OAuth 2.0 migration changed token signing algorithm from RS256 to RS384 but validation logic still expects RS256. Combined with Go 1.22 crypto behavior change, all tokens are rejected.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-deploy_regression-004",
+      "fault_type": "deploy_regression",
+      "service": "search-service",
+      "language": "Rust",
+      "region": "us-west-2",
+      "severity": "warning",
+      "timestamp": "2026-05-31T04:32:59.362244",
+      "title": "Error rate spike after deployment",
+      "alerts": [
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-deploy_regression-4-0",
+          "title": "Error rate spike after deployment",
+          "description": "search-service error rate increased 10x after latest deploy",
+          "severity": "critical",
+          "service": "search-service",
+          "timestamp": "2026-05-31T04:32:59.362244"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-deploy_regression-4-1",
+          "title": "Latency regression on search-service",
+          "description": "P99 latency increased from 200ms to 5s",
+          "severity": "critical",
+          "service": "search-service",
+          "timestamp": "2026-05-31T04:35:59.362244"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-2dafbcfe405c",
+          "message": "refactor: migrate authentication to OAuth 2.0",
+          "author": "dev1",
+          "files_changed": 15,
+          "timestamp": "2026-05-30T12:32:59.362244"
+        },
+        {
+          "sha": "sim-8d4ae30e597f",
+          "message": "fix: update auth token validation logic",
+          "author": "dev1",
+          "files_changed": 3,
+          "timestamp": "2026-05-30T18:32:59.362244"
+        },
+        {
+          "sha": "sim-41397635009b",
+          "message": "chore: bump golang version to 1.22",
+          "author": "dev5",
+          "files_changed": 2,
+          "timestamp": "2026-05-29T10:32:59.362244"
+        }
+      ],
+      "logs": [
+        "ERROR - token validation failed: unexpected signature algorithm",
+        "WARN - JWT decode error: crypto/rsa: verification error",
+        "ERROR - authentication middleware rejection rate: 45%"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Deploy regression in search-service: OAuth 2.0 migration changed token signing algorithm from RS256 to RS384 but validation logic still expects RS256. Combined with Go 1.22 crypto behavior change, all tokens are rejected.",
+      "expected_confidence": 0.95
+    },
+    {
+      "id": "sim-deploy_regression-005",
+      "fault_type": "deploy_regression",
+      "service": "api-gateway",
+      "language": "Java",
+      "region": "ap-southeast-1",
+      "severity": "critical",
+      "timestamp": "2026-06-01T01:32:59.362281",
+      "title": "Error rate spike after deployment",
+      "alerts": [
+        {
+          "source": "pagerduty",
+          "alert_id": "sim-deploy_regression-5-0",
+          "title": "Error rate spike after deployment",
+          "description": "api-gateway error rate increased 10x after latest deploy",
+          "severity": "critical",
+          "service": "api-gateway",
+          "timestamp": "2026-06-01T01:32:59.362281"
+        },
+        {
+          "source": "opsgenie",
+          "alert_id": "sim-deploy_regression-5-1",
+          "title": "Latency regression on api-gateway",
+          "description": "P99 latency increased from 200ms to 5s",
+          "severity": "critical",
+          "service": "api-gateway",
+          "timestamp": "2026-06-01T01:35:59.362281"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "sim-d853007a4840",
+          "message": "refactor: migrate authentication to OAuth 2.0",
+          "author": "dev1",
+          "files_changed": 15,
+          "timestamp": "2026-05-31T21:32:59.362281"
+        },
+        {
+          "sha": "sim-218fb77ddeea",
+          "message": "fix: update auth token validation logic",
+          "author": "dev1",
+          "files_changed": 3,
+          "timestamp": "2026-05-30T13:32:59.362281"
+        },
+        {
+          "sha": "sim-18fe1a7547d9",
+          "message": "chore: bump golang version to 1.22",
+          "author": "dev5",
+          "files_changed": 2,
+          "timestamp": "2026-05-31T09:32:59.362281"
+        }
+      ],
+      "logs": [
+        "ERROR - token validation failed: unexpected signature algorithm",
+        "WARN - JWT decode error: crypto/rsa: verification error",
+        "ERROR - authentication middleware rejection rate: 45%"
+      ],
+      "incident_count": 2,
+      "ground_truth": "Deploy regression in api-gateway: OAuth 2.0 migration changed token signing algorithm from RS256 to RS384 but validation logic still expects RS256. Combined with Go 1.22 crypto behavior change, all tokens are rejected.",
+      "expected_confidence": 0.95
+    }
+  ]
+}
