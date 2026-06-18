@@ -15,6 +15,11 @@ class Settings(BaseSettings):
     supabase_url: str = ""
     supabase_key: str = ""
     database_url: str = ""
+    tdengine_host: str = "localhost"
+    tdengine_port: int = 6041
+    tdengine_user: str = "root"
+    tdengine_password: str = "taosdata"
+    tdengine_database: str = "incident_commander"
     github_token: str = ""
     pagerduty_api_key: str = ""
     opsgenie_api_key: str = ""
