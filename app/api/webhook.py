@@ -15,25 +15,14 @@ async def pagerduty_webhook(request: Request):
     body = await request.json()
     logger.debug(f"PagerDuty webhook received: {body.get('event', {}).get('id', 'unknown')}")
 
-    messages = body.get("messages", [])
-    for msg in messages:
-        payload = msg.get("payload", {})
-        alert = AlertPayload(
-            source="pagerduty",
-            alert_id=payload.get("id", ""),
-            title=payload.get("title", ""),
-            description=payload.get("description", ""),
-            severity=payload.get("severity", "warning"),
-            service=payload.get("service", {}).get("name", "unknown"),
-            timestamp=msg.get("occurred_at", ""),
-            raw=payload,
-        )
+    alerts = _parse_pagerduty_payload(body)
+    for alert in alerts:
         event = await incident_service.process_alert(alert)
         result = await supervisor.run(event)
         await _notify(result)
         incident_service.save_report(result)
 
-    return {"status": "ok"}
+    return {"status": "ok", "alerts_processed": len(alerts)}
 
 
 @router.post("/opsgenie")
@@ -58,6 +47,42 @@ async def opsgenie_webhook(request: Request):
     incident_service.save_report(result)
 
     return {"status": "ok"}
+
+
+def _parse_pagerduty_payload(body: dict) -> list[AlertPayload]:
+    fmt = "pd_v3" if body.get("messages") else "simplified"
+    logger.info(f"PagerDuty payload format: {fmt}")
+
+    if fmt == "pd_v3":
+        alerts = []
+        for msg in body.get("messages", []):
+            p = msg.get("payload", {})
+            alerts.append(AlertPayload(
+                source="pagerduty",
+                alert_id=p.get("id", ""),
+                title=p.get("title", ""),
+                description=p.get("description", ""),
+                severity=p.get("severity", "warning"),
+                service=p.get("service", {}).get("name", "unknown"),
+                timestamp=msg.get("occurred_at", ""),
+                raw=p,
+            ))
+        return alerts
+
+    ev = body.get("event", {})
+    alerts = []
+    for a in ev.get("alerts", [ev]):
+        alerts.append(AlertPayload(
+            source="pagerduty",
+            alert_id=a.get("id", ev.get("id", "")),
+            title=a.get("title", ev.get("title", "")),
+            description=a.get("description", ev.get("description", "")),
+            severity=a.get("severity", "critical"),
+            service=a.get("service", {}).get("name", "unknown"),
+            timestamp=ev.get("created_at", ""),
+            raw=a,
+        ))
+    return alerts
 
 
 async def _notify(report):
