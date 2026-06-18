@@ -3,6 +3,7 @@
 > Self-hosted AI SRE that compresses 60+ alerts into a single incident with root cause + fix in ~12 seconds.
 
 [![Gitee stars](https://gitee.com/ai-sre/ai-incident-commander/badge/star.svg?theme=white)](https://gitee.com/ai-sre/ai-incident-commander)
+[![GitHub](https://img.shields.io/badge/hosted%20on-GitHub-181717?logo=github&logoColor=white)](https://github.com/aisre-io/ai-incident-commander)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue)](https://www.python.org)
 [![Tests](https://img.shields.io/badge/tests-61%2F61-brightgreen)](tests/)
@@ -22,14 +23,18 @@ On-call engineers drown in alert noise. 60+ alerts per incident, ~30 min MTTR, m
 ## Quick Start
 
 ```bash
+# Gitee (mainland China, recommended)
 git clone https://gitee.com/ai-sre/ai-incident-commander
+# GitHub (SSH, international)
+git clone git@github.com:aisre-io/ai-incident-commander.git
+
 cd ai-incident-commander
 pip install -r requirements.txt
 cp .env.example .env       # fill DEEPSEEK_API_KEY and LARK_WEBHOOK_URL
 python run.py
 ```
 
-> **Note**: This repo is currently hosted on **Gitee** (mainland China network conditions). A GitHub mirror will follow once access stabilizes. All issues / PRs are welcome on Gitee.
+> **Note**: Mirrored on both **Gitee** (primary for mainland China) and **GitHub** ([aisre-io/ai-incident-commander](https://github.com/aisre-io/ai-incident-commander), international). Issues/PRs welcome on either platform.
 
 Send a test incident:
 

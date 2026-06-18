@@ -2,8 +2,10 @@
 
 ## Railway (easiest)
 
-1. Push this repo to GitHub
-2. Go to https://railway.app/new → "Deploy from GitHub repo"
+> **Prerequisite**: Repo must be on GitHub — already pushed: `github.com/aisre-io/ai-incident-commander`
+
+1. Go to https://railway.app/new → "Deploy from GitHub repo"
+2. Select `aisre-io/ai-incident-commander`
 3. Railway auto-detects Dockerfile and builds
 4. Set environment variables in Railway dashboard:
    - `DEEPSEEK_API_KEY` (required)
@@ -17,6 +19,8 @@
 6. Webhook URL: `https://<your-app>.up.railway.app/api/webhook/pagerduty`
 
 ## Fly.io (most control)
+
+> **Note**: If GitHub is blocked in your region, flyctl installation may fail (it downloads from GitHub Releases). Alternative: pre-download the binary from a mirror or use Railway instead.
 
 ```bash
 # Install fly CLI: https://fly.io/docs/hands-on/install-flyctl/
