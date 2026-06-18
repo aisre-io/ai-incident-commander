@@ -70,6 +70,7 @@ def _parse_pagerduty_payload(body: dict) -> list[AlertPayload]:
         return alerts
 
     ev = body.get("event", {})
+    svc = ev.get("service", {}).get("name", "unknown")
     alerts = []
     for a in ev.get("alerts", [ev]):
         alerts.append(AlertPayload(
@@ -78,7 +79,7 @@ def _parse_pagerduty_payload(body: dict) -> list[AlertPayload]:
             title=a.get("title", ev.get("title", "")),
             description=a.get("description", ev.get("description", "")),
             severity=a.get("severity", "critical"),
-            service=a.get("service", {}).get("name", "unknown"),
+            service=a.get("service", {}).get("name", svc),
             timestamp=ev.get("created_at", ""),
             raw=a,
         ))
