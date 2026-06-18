@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from app.api import webhook, slack
 from app.utils.logger import setup_logger
@@ -18,4 +19,5 @@ app.include_router(slack.router)
 
 @app.get("/health")
 async def health():
-    return {"status": "ok", "version": "0.1.0", "env": settings.app_env}
+    raw_app_env = os.environ.get("APP_ENV", "ENV_NOT_SET")
+    return {"status": "ok", "version": "0.1.0", "env": settings.app_env, "raw_app_env": raw_app_env}
