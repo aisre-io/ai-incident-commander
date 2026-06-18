@@ -16,8 +16,8 @@ app = FastAPI(
 app.include_router(webhook.router)
 app.include_router(slack.router)
 
+DEPLOY_ENV = os.environ.get("DEPLOY_ENV") or os.environ.get("APP_ENV") or os.environ.get("RAILWAY_ENVIRONMENT", "development")
 
 @app.get("/health")
 async def health():
-    raw_app_env = os.environ.get("APP_ENV", "ENV_NOT_SET")
-    return {"status": "ok", "version": "0.1.0", "env": settings.app_env, "raw_app_env": raw_app_env}
+    return {"status": "ok", "version": "0.1.0", "env": DEPLOY_ENV}
