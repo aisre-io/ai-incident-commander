@@ -211,7 +211,7 @@ curl -X POST https://open.feishu.cn/open-apis/bot/v2/hook/your-token \
 ## 🤝 需要帮助？
 
 - **GitHub Issues**: [github.com/aisre-io/ai-incident-commander/issues](https://github.com/aisre-io/ai-incident-commander/issues)
-- **Email**: jacky@ai-sre.io
+- **Email**: jacky_yzq@139.com
 
 ---
 
