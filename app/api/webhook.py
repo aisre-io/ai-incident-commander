@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, BackgroundTasks
 from app.models.schemas import AlertPayload
 from app.services.incident_service import IncidentService
 from app.agents.supervisor import SupervisorAgent
@@ -10,23 +10,33 @@ incident_service = IncidentService()
 supervisor = SupervisorAgent()
 
 
+async def _process_alert_async(alert: AlertPayload):
+    """Process a single alert asynchronously (AI analysis + notification)."""
+    try:
+        logger.info(f"Processing alert {alert.alert_id} asynchronously...")
+        event = await incident_service.process_alert(alert)
+        result = await supervisor.run(event)
+        await _notify(result)
+        incident_service.save_report(result)
+        logger.info(f"Alert {alert.alert_id} processed successfully")
+    except Exception as e:
+        logger.error(f"Async processing failed for alert {alert.alert_id}: {e}")
+
+
 @router.post("/pagerduty")
-async def pagerduty_webhook(request: Request):
+async def pagerduty_webhook(request: Request, background_tasks: BackgroundTasks):
     body = await request.json()
     logger.debug(f"PagerDuty webhook received: {body.get('event', {}).get('id', 'unknown')}")
 
     alerts = _parse_pagerduty_payload(body)
     for alert in alerts:
-        event = await incident_service.process_alert(alert)
-        result = await supervisor.run(event)
-        await _notify(result)
-        incident_service.save_report(result)
+        background_tasks.add_task(_process_alert_async, alert)
 
-    return {"status": "ok", "alerts_processed": len(alerts)}
+    return {"status": "ok", "alerts_processed": len(alerts), "processing": "async"}
 
 
 @router.post("/opsgenie")
-async def opsgenie_webhook(request: Request):
+async def opsgenie_webhook(request: Request, background_tasks: BackgroundTasks):
     body = await request.json()
     logger.debug(f"Opsgenie webhook received: {body.get('alert', {}).get('alertId', 'unknown')}")
 
@@ -41,12 +51,9 @@ async def opsgenie_webhook(request: Request):
         timestamp=alert_data.get("createdAt", ""),
         raw=alert_data,
     )
-    event = await incident_service.process_alert(alert)
-    result = await supervisor.run(event)
-    await _notify(result)
-    incident_service.save_report(result)
+    background_tasks.add_task(_process_alert_async, alert)
 
-    return {"status": "ok"}
+    return {"status": "ok", "processing": "async"}
 
 
 def _parse_pagerduty_payload(body: dict) -> list[AlertPayload]:
