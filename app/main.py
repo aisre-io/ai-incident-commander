@@ -1,5 +1,6 @@
 import os
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 from app.api import webhook, slack
 from app.utils.logger import setup_logger
 from app.config import get_settings
@@ -18,7 +19,7 @@ app.include_router(slack.router)
 
 DEPLOY_ENV = os.environ.get("DEPLOY_ENV") or os.environ.get("APP_ENV") or os.environ.get("RAILWAY_ENVIRONMENT", "development")
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 async def root():
     html_content = """
 <!DOCTYPE html>
@@ -187,9 +188,19 @@ async def root():
 </body>
 </html>
     """
-    from fastapi.responses import HTMLResponse
-    return HTMLResponse(content=html_content)
+    return HTMLResponse(
+        content=html_content,
+        headers={
+            "Cache-Control": "public, max-age=300, s-maxage=600",
+            "ETag": '"v1.0"',
+        }
+    )
 
 @app.get("/health")
 async def health():
     return {"status": "ok", "version": "0.1.0", "env": DEPLOY_ENV}
+
+@app.get("/keepalive")
+async def keepalive():
+    """Keep the service alive to prevent cold starts on free tier."""
+    return {"status": "alive", "timestamp": os.environ.get("RAILWAY_DEPLOYMENT_ID", "local")}
